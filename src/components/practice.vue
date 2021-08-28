@@ -34,7 +34,9 @@ export default {
       //声を変える
       uttr.voice = speechSynthesis
         .getVoices()
-        .filter((voice) => voice.name === "Google 日本語")[0]
+        .filter(
+          (voice) => voice.name === "Microsoft Ichiro - Japanese (Japan)"
+        )[0]
       //
       if (this.pause == false) {
         speechSynthesis.speak(uttr)
