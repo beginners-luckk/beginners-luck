@@ -7,19 +7,22 @@
 
     <!-- <router-view /> -->
     <!-- <HelloWorld /> -->
-    <practice />
+    <!-- <practice /> -->
+    <textToSpeech />
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue"
-import practice from "./components/practice.vue"
+// import practice from "./components/practice.vue"
+import textToSpeech from "./components/textSpeechApi.vue"
 
 export default {
   name: "App",
   components: {
     // HelloWorld,
-    practice,
+    // practice,
+    textToSpeech,
   },
 }
 </script>
