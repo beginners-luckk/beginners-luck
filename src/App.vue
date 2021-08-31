@@ -21,6 +21,14 @@ export default {
     // HelloWorld,
     practice,
   },
+  methods: {
+    signIn() {
+      this.$store.dispatch("signInWithGoogle")
+    },
+    signOut() {
+      this.$store.dispatch("signOut")
+    },
+  },
 }
 </script>
 
