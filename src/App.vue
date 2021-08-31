@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-
-    <!-- <router-view /> -->
-    <!-- <HelloWorld /> -->
+    <div id="nav">
+      <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
+      <router-link to="/AfterSignIn">After Sign In Page</router-link>
+    </div>
+    <div class="sign-in">
+      <span @click="signIn">Sign In</span>
+      <span @click="signOut">Sign Out</span>
+    </div>
+    <router-view />
     <practice />
   </div>
 </template>
