@@ -5,7 +5,7 @@
     "speakingRate": "1.00"
   },
   "input": {
-    "text": "あなたの強みを教えてください"
+    "text": "弊社でやりたいことはなんですか"
   },
   "voice": {
     "languageCode": "ja-JP",
