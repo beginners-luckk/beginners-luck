@@ -5,23 +5,24 @@
       <router-link to="/AfterSignIn">After Sign In Page</router-link>
     </div>
     <div class="sign-in">
-      <span @click="signIn">Sign In</span>
-      <span @click="signOut">Sign Out</span>
+      <button @click="signIn">Sign In</button>
+      <button @click="signOut">Sign Out</button>
     </div>
     <router-view />
+    <make-question />
     <practice />
   </div>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue"
+import MakeQuestion from "./components/makeQuestion.vue"
 import practice from "./components/practice.vue"
 
 export default {
   name: "App",
   components: {
-    // HelloWorld,
     practice,
+    MakeQuestion,
   },
   methods: {
     signIn() {
