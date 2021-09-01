@@ -3,27 +3,18 @@
     <div id="nav">
       <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
       <router-link to="/AfterSignIn">After Sign In Page</router-link>
+
+      <router-link to="/">Home</router-link> |
+      <router-link to="/History">History</router-link>
     </div>
-    <!-- <div class="sign-in">
-      <button @click="signIn">Sign In</button>
-      <button @click="signOut">Sign Out</button>
-    </div> -->
     <router-view />
-    <!-- <make-question />
-    <practice /> -->
+    <text-to-speech />
   </div>
 </template>
-
 <script>
-// import MakeQuestion from "./components/makeQuestion.vue"
-// import practice from "./components/practice.vue"
+import textToSpeech from "./components/textSpeechApi.vue"
 
 export default {
-  name: "App",
-  // components: {
-  //   practice,
-  //   MakeQuestion,
-  // },
   methods: {
     signIn() {
       this.$store.dispatch("signInWithGoogle")
@@ -32,9 +23,13 @@ export default {
       this.$store.dispatch("signOut")
     },
   },
+  components: {
+    // HelloWorld,
+    // practice,
+    textToSpeech,
+  },
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
