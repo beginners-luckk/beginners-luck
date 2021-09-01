@@ -4,6 +4,7 @@ import Home from "../views/Home.vue"
 import Easyinterview from "../views/Easyinterview.vue"
 import Mediuminterview from "../views/Mediuminterview.vue"
 import Hardinterview from "../views/Hardinterview.vue"
+import History from "../views/History.vue"
 
 Vue.use(VueRouter)
 
@@ -16,11 +17,7 @@ const routes = [
   {
     path: "/History",
     name: "History",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/History.vue"),
+    component: History,
   },
   {
     path: "/",
