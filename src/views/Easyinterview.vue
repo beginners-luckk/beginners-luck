@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      imgPath: require("@/assets/面接官.jpg"),
+      imgPath: require("@/assets/easy面接官.jpg"),
       interviews: [
         {
           voice: "/yaritaikoto.mp3",
