@@ -4,15 +4,15 @@
       <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
       <router-link to="/AfterSignIn">After Sign In Page</router-link>
 
-      <router-link to="/">Home</router-link> |
+      <router-link to="/Home">Home</router-link> |
       <router-link to="/History">History</router-link>
     </div>
     <router-view />
-    <text-to-speech />
+    <!-- <text-to-speech /> -->
   </div>
 </template>
 <script>
-import textToSpeech from "./components/textSpeechApi.vue"
+// import textToSpeech from "./components/textSpeechApi.vue"
 
 export default {
   methods: {
@@ -23,11 +23,11 @@ export default {
       this.$store.dispatch("signOut")
     },
   },
-  components: {
-    // HelloWorld,
-    // practice,
-    textToSpeech,
-  },
+  // components: {
+  //   HelloWorld,
+  //   practice,
+  //   textToSpeech,
+  // },
 }
 </script>
 <style>

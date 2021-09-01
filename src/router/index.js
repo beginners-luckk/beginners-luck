@@ -3,7 +3,7 @@ import VueRouter from "vue-router"
 import BeforeSignIn from "@/views/BeforeSignIn.vue"
 import AfterSignIn from "@/views/AfterSignIn.vue"
 import firebase from "firebase"
-// import Home from "../views/Home.vue"
+import Home from "../views/Home.vue"
 import Easyinterview from "../views/Easyinterview.vue"
 import Mediuminterview from "../views/Mediuminterview.vue"
 import Hardinterview from "../views/Hardinterview.vue"
@@ -24,6 +24,11 @@ const routes = [
     path: "/AfterSignIn",
     name: "AfterSignIn",
     component: AfterSignIn,
+  },
+  {
+    path: "/Home",
+    name: "Home",
+    component: Home,
   },
   {
     path: "/History",
