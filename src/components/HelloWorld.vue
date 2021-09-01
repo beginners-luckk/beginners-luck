@@ -1,114 +1,112 @@
 <template>
-  <div class="hello">
+  <div class="Home">
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+  </div>
+</template>
+
+<template>
+  <div class="choose-mode">
+    <div class="item">
+      <figure class="image">
+        <img
+          src="https://i0.wp.com/sozaido.site/wp-content/uploads/2019/08/r00831c.jpg?fit=428%2C400&ssl=1"
+          alt=""
+        />
+      </figure>
+      <p class="title">Easy</p>
+      <p class="description">優しく話しやすい雰囲気の面接</p>
+      <p class="link"><a href="#">面接画面へ</a></p>
+    </div>
+    <div class="item">
+      <figure class="image">
+        <img
+          src="https://i1.wp.com/sozaido.site/wp-content/uploads/2019/07/r00826.png?w=632&ssl=1"
+          alt=""
+        />
+      </figure>
+      <p class="title">Medium</p>
+      <p class="description">
+        あまり感情を表に出さず、淡々と質問がとんでくる面接
+      </p>
+      <p class="link"><a href="#">面接画面へ</a></p>
+    </div>
+    <div class="item">
+      <figure class="image">
+        <img
+          src="https://thumb.ac-illust.com/2c/2cdb2a810ce6e889780ef4f450583c91_t.jpeg"
+          alt=""
+        />
+      </figure>
+      <p class="title">Hard</p>
+      <p class="description">圧迫面接に近い雰囲気を味わえる、、、、</p>
+      <p class="link"><a href="#">面接画面へ</a></p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "Home",
   props: {
     msg: String,
   },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style>
+.choose-mode {
+  display: flex;
+  justify-content: space-between;
 }
-ul {
-  list-style-type: none;
+.choose-mode .item {
+  display: flex;
+  flex-direction: column;
+  width: 31%;
+  margin: 0;
+  padding: 0 0 20px 0;
+  box-sizing: border-box;
+  background: #eee;
+}
+.choose-mode .item {
+  margin: 0;
   padding: 0;
+  flex: 0 0 auto;
 }
-li {
+.choose-mode .item .image img {
+  width: 50%;
+  height: 300px;
+  margin: 10px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.choose-mode .item .title {
+  margin: 10px 0 0;
+  padding: 0 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.choose-mode .item .description {
+  margin: 5px 0 20px;
+  padding: 0 20px;
+  font-size: 16px;
+  flex: 1;
+}
+.choose-mode .item .link {
+  margin: 20px 0 0;
+  padding: 0 20px;
+  font-size: 16px;
+  text-align: center;
+}
+.choose-mode .item .link a {
   display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  padding: 10px 20px;
+  text-align: center;
+  background: black;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
 </style>

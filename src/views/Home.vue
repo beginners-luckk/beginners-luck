@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <img
+      class="hiyoko"
+      alt="hiyoko-gif"
+      src="https://hiyokoyarou.com/wp-content/uploads/2015/09/piyopiyo.gif"
+    />
+    <HelloWorld msg="モードを選択してください" />
   </div>
 </template>
 
@@ -16,3 +20,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.hiyoko {
+  width: 10%;
+  height: 50%;
+}
+</style>
