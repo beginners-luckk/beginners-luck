@@ -24,6 +24,6 @@ export default {
 <style>
 .hiyoko {
   width: 10%;
-  height: 50%;
+  height: 49%;
 }
 </style>
