@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
+    <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-
-    <!-- <router-view /> -->
-    <!-- <HelloWorld /> -->
-    <!-- <practice /> -->
-    <textToSpeech />
+      <router-link to="/History">History</router-link>
+    </div>
+    <router-view />
+    <text-to-speech />
   </div>
 </template>
-
 <script>
 // import HelloWorld from "./components/HelloWorld.vue"
 // import practice from "./components/practice.vue"
@@ -26,7 +22,6 @@ export default {
   },
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
