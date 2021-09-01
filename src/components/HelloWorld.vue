@@ -1,10 +1,4 @@
 <template>
-  <div class="Home">
-    <h1>{{ msg }}</h1>
-  </div>
-</template>
-
-<template>
   <div class="choose-mode">
     <div class="item">
       <figure class="image">
@@ -46,7 +40,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "HelloWorld",
   props: {
     msg: String,
   },

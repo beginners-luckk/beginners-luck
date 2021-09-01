@@ -1,11 +1,8 @@
 <template>
-  <div class="History">
-    <h1>過去の面接履歴</h1>
-  </div>
-</template>
-
-<template>
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+    <div class="History">
+      <h1>過去の面接履歴</h1>
+    </div>
     <head>
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -48,7 +45,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="item in items">
+                      <tr v-bind:key="item in items">
                         <td>{{ item.no }}</td>
                         <td>{{ item.mode }}</td>
                         <td>{{ item.date }}</td>
