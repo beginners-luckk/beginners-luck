@@ -1,11 +1,8 @@
 <template>
-  <div class="Home">
-    <h1>{{ msg }}</h1>
-  </div>
-</template>
-
-<template>
   <div class="choose-mode">
+    <div class="Home">
+      <h1>{{ msg }}</h1>
+    </div>
     <div class="item">
       <figure class="image">
         <img
@@ -15,7 +12,9 @@
       </figure>
       <p class="title">Easy</p>
       <p class="description">優しく話しやすい雰囲気の面接</p>
-      <p class="link"><a href="#">面接画面へ</a></p>
+      <router-link to="/Easyinterview.vue"
+        ><p class="link"><a href="#">面接画面へ</a></p></router-link
+      >
     </div>
     <div class="item">
       <figure class="image">
@@ -45,11 +44,15 @@
 </template>
 
 <script>
+// import Easyinterview from "src/views/Easyinterview.vue"
 export default {
   name: "Home",
   props: {
     msg: String,
   },
+  // views: {
+  //   Easyinterview,
+  // },
 }
 </script>
 
