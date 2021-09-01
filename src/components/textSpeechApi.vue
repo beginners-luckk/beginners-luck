@@ -3,7 +3,7 @@
     <h2>
       <img v-bind:src="imgPath" alt="" />
     </h2>
-    <div><button v-on:click="playInterview">質問</button></div>
+    <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
     <!-- <div v-for="intervie of interviews" :key="intervie.voice">
