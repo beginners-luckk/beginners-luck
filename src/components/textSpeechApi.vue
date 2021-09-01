@@ -18,18 +18,27 @@ export default {
     return {
       imgPath: require("@/assets/面接官.jpg"),
       interviews: [
-        { voice: "/yaritaikoto.mp3", text: "弊社でやりたいことは何ですか？" },
-        { voice: "/tsuyomi.mp3", text: "あなたの強みを教えてください" },
+        {
+          voice: "/yaritaikoto.mp3",
+          text: "弊社でやりたいことは何ですか？",
+          isdone: false,
+        },
+        {
+          voice: "/tsuyomi.mp3",
+          text: "あなたの強みを教えてください",
+          isdone: false,
+        },
         {
           voice: "/syukatuziku.mp3",
           text: "どのような軸で就職活動を進めていますか？",
+          isdone: false,
         },
       ],
     }
   },
   methods: {
     playInterview() {
-      const audio = new Audio("/yaritaikoto.mp3")
+      const audio = new Audio("/zikopr.mp3")
       return audio.play()
     },
     nextInterview() {
@@ -37,14 +46,18 @@ export default {
 
       // 配列をランダムに取得
       for (let i = this.interviews.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1))
-        var tmp = this.interviews[i]
+        let j = Math.floor(Math.random() * (i + 1))
+        let tmp = this.interviews[i]
         this.interviews[i] = this.interviews[j]
         this.interviews[j] = tmp
-        audio.src = this.interviews[i].voice
+        if (tmp.isdone == false) {
+          audio.src = tmp.voice
+          tmp.isdone = true
+          return audio.play()
+        } else {
+          return
+        }
       }
-
-      return audio.play()
     },
     stopInterview() {},
   },
