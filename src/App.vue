@@ -4,26 +4,26 @@
       <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
       <router-link to="/AfterSignIn">After Sign In Page</router-link>
     </div>
-    <div class="sign-in">
+    <!-- <div class="sign-in">
       <button @click="signIn">Sign In</button>
       <button @click="signOut">Sign Out</button>
-    </div>
+    </div> -->
     <router-view />
-    <make-question />
-    <practice />
+    <!-- <make-question />
+    <practice /> -->
   </div>
 </template>
 
 <script>
-import MakeQuestion from "./components/makeQuestion.vue"
-import practice from "./components/practice.vue"
+// import MakeQuestion from "./components/makeQuestion.vue"
+// import practice from "./components/practice.vue"
 
 export default {
   name: "App",
-  components: {
-    practice,
-    MakeQuestion,
-  },
+  // components: {
+  //   practice,
+  //   MakeQuestion,
+  // },
   methods: {
     signIn() {
       this.$store.dispatch("signInWithGoogle")
