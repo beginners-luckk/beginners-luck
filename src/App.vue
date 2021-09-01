@@ -5,9 +5,23 @@
       <router-link to="/History">History</router-link>
     </div>
     <router-view />
+    <text-to-speech />
   </div>
 </template>
+<script>
+// import HelloWorld from "./components/HelloWorld.vue"
+// import practice from "./components/practice.vue"
+import textToSpeech from "./components/textSpeechApi.vue"
 
+export default {
+  name: "App",
+  components: {
+    // HelloWorld,
+    // practice,
+    textToSpeech,
+  },
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
