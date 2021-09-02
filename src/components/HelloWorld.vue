@@ -12,7 +12,7 @@
       </figure>
       <p class="title">Easy</p>
       <p class="description">優しく話しやすい雰囲気の面接</p>
-      <router-link to="/Easyinterview.vue"
+      <router-link :to="{ name: 'Easy' }"
         ><p class="link"><a href="#">面接画面へ</a></p></router-link
       >
     </div>
@@ -27,7 +27,9 @@
       <p class="description">
         あまり感情を表に出さず、淡々と質問がとんでくる面接
       </p>
-      <p class="link"><a href="#">面接画面へ</a></p>
+      <router-link :to="{ name: 'Medium' }">
+        <p class="link"><a href="#">面接画面へ</a></p></router-link
+      >
     </div>
     <div class="item">
       <figure class="image">
@@ -38,21 +40,19 @@
       </figure>
       <p class="title">Hard</p>
       <p class="description">圧迫面接に近い雰囲気を味わえる、、、、</p>
-      <p class="link"><a href="#">面接画面へ</a></p>
+      <router-link :to="{ name: 'Hard' }">
+        <p class="link"><a href="#">面接画面へ</a></p></router-link
+      >
     </div>
   </div>
 </template>
 
 <script>
-// import Easyinterview from "src/views/Easyinterview.vue"
 export default {
   name: "Home",
   props: {
     msg: String,
   },
-  // views: {
-  //   Easyinterview,
-  // },
 }
 </script>
 

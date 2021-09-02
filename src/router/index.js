@@ -41,7 +41,7 @@ const routes = [
   },
   {
     path: "/",
-    name: "Easyinterview",
+    name: "Easy",
     component: Easyinterview,
   },
   {
