@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>
-      <img v-bind:src="imgPath" alt="" />
-    </h2>
+    <div class="interview">
+      <img class="interviewer" v-bind:src="imgPath" alt="" />
+    </div>
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
@@ -13,14 +13,10 @@
 </template>
 
 <script>
-// import { Howl } from "howler"
-// import testAudioObject from "../assets/synthesize-output.json"
-// console.log(testAudioObject)
-
 export default {
   data() {
     return {
-      imgPath: require("@/assets/面接官.jpg"),
+      imgPath: require("@/assets/easy面接官.jpg"),
       interviews: [
         {
           voice: "/yaritaikoto.mp3",
@@ -42,13 +38,6 @@ export default {
   },
   methods: {
     playInterview() {
-      // const sound = new Howl({
-      //   src: [testAudioObject.audioContent],
-      //   format: ["mp3"],
-      //   html5: true,
-      // })
-      // sound.play()
-
       const audio = new Audio("/zikopr.mp3")
       return audio.play()
     },
@@ -74,3 +63,26 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.interview {
+  background-color: bisque;
+}
+.interviewer {
+  width: 48rem;
+  height: 32rem;
+  margin: 0 auto;
+}
+</style>
+
+<style>
+.interview {
+  display: flex;
+  text-align: center;
+}
+.interviewer {
+  width: 45rem;
+  height: 28rem;
+  margin: 0 auto;
+}
+</style>
