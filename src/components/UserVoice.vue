@@ -1,10 +1,9 @@
 <template>
   <div>
-    <button @onclick="userMicrophone">test</button>
-    <button type="button" v-if="status == 'ready'" @click="startutton">
+    <button type="button" v-if="status == 'ready'" @click="startButton">
       録音を開始する
     </button>
-    <button type="button" v-if="status == 'recording'" @click="stoputton">
+    <button type="button" v-if="status == 'recording'" @click="stopButton">
       録音を終了する
     </button>
   </div>
