@@ -6,7 +6,11 @@
         alt="hiyoko-gif"
         src="https://hiyokoyarou.com/wp-content/uploads/2015/09/piyopiyo.gif"
       />
-      <HelloWorld msg="モードを選択してください" />
+      <div class="Home">
+        <h1>モードを選択してください</h1>
+        <h2>〜求める面接官像に合わせて練習することができます〜</h2>
+      </div>
+      <HelloWorld msg="" />
     </div>
     <div><router-view /></div>
   </div>
@@ -28,5 +32,9 @@ export default {
 .hiyoko {
   width: 10%;
   height: 49%;
+}
+.Home {
+  display: flex;
+  display: block;
 }
 </style>
