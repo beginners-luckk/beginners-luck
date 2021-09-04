@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { storage } from "../storage/storage"
+
 export default {
   data() {
     return {
@@ -19,7 +21,12 @@ export default {
   },
   methods: {
     playInterview() {
+      const storageRef = storage.ref("jobInterviews/zikopr.mp3")
+      storageRef.getDownloadURL().then((url) => {
+        this.interviews = url
+      })
       const audio = new Audio()
+      audio.src = this.interviews
       return audio.play()
     },
     nextInterview() {
