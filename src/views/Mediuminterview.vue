@@ -6,28 +6,46 @@
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
+    <div><button v-on:click="getList">リスト取得</button></div>
+    <div v-for="(interviewList, index) in interviewLists" v-bind:key="index">
+      {{ index }}:{{ this.interviewList }}
+    </div>
   </div>
 </template>
 
 <script>
-import { storage } from "../storage/storage"
+import { storage, storageRef } from "../storage/storage"
 
 export default {
   data() {
     return {
       imgPath: require("@/assets/med面接官.png"),
       interviews: [],
+      interviewLists: [],
     }
   },
   methods: {
     playInterview() {
-      const storageRef = storage.ref("jobInterviews/zikopr.mp3")
+      const storageRef = storage.ref("jobInterviews/syukatuziku.mp3")
       storageRef.getDownloadURL().then((url) => {
         this.interviews = url
+        console.log(this.interviews)
       })
       const audio = new Audio()
       audio.src = this.interviews
       return audio.play()
+    },
+    getList() {
+      let listRef = storageRef
+      listRef
+        .child("jobInterviews")
+        .list()
+        .then((res) => {
+          res.items.forEach((doc) => {
+            console.log(doc.fullPath)
+            this.interviewList = doc.fullPath
+          })
+        })
     },
     nextInterview() {
       const audio = new Audio()
