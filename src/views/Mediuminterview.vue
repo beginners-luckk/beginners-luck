@@ -7,8 +7,9 @@
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
     <div><button v-on:click="getList">リスト取得</button></div>
+    <div><button v-on:click="randomInterview">ランダム再生</button></div>
     <div v-for="(interviewList, index) in interviewLists" v-bind:key="index">
-      {{ index }}:{{ this.interviewList }}
+      {{ index }}:{{ interviewList }}
     </div>
   </div>
 </template>
@@ -22,6 +23,7 @@ export default {
       imgPath: require("@/assets/med面接官.png"),
       interviews: [],
       interviewLists: [],
+      intervieUrl: [],
     }
   },
   methods: {
@@ -43,29 +45,89 @@ export default {
         .then((res) => {
           res.items.forEach((doc) => {
             console.log(doc.fullPath)
-            this.interviewList = doc.fullPath
+            let interviewList = doc.fullPath
+            console.log(interviewList)
           })
         })
     },
     nextInterview() {
       const audio = new Audio()
 
-      // 配列をランダムに取得
-      for (let i = this.interviews.length - 1; i > 0; i--) {
+      for (let i = this.interviewList.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1))
-        let tmp = this.interviews[i]
-        this.interviews[i] = this.interviews[j]
-        this.interviews[j] = tmp
-        if (tmp.isdone == false) {
-          audio.src = tmp.voice
-          tmp.isdone = true
-          return audio.play()
-        } else {
-          return
-        }
+        let tmp = this.interviewList[i]
+        this.interviewList[i] = this.interviewList[j]
+        this.interviewList[j] = tmp
+
+        audio.src = tmp
+        return audio.play()
       }
     },
-    stopInterview() {},
+    randomInterview() {
+      // ここのコメントアウトを解除して始める
+      // const audio = new Audio()
+
+      // リスト取得
+      let listRef = storageRef
+      listRef
+        .child("jobInterviews")
+        .list()
+        .then((res) => {
+          res.items.forEach((doc) => {
+            let interviewList = doc.fullPath
+            // console.log(interviewList)
+
+            // リストをURLに変換
+            const storageRef = storage.ref(interviewList)
+            storageRef.getDownloadURL().then((url) => {
+              let interviewUrl = url
+              console.log(interviewUrl)
+
+              // ここのコメントアウトを解除して始める
+              // for (let i = interviewUrl.length - 1; i > 0; i--) {
+              //   let j = Math.floor(Math.random() * (i + 1))
+              //   let tmp = interviewUrl[i]
+              //   interviewUrl[i] = interviewUrl[j]
+              //   interviewUrl[j] = tmp
+              //   console.log(tmp)
+              //   audio.src = tmp
+              //   audio.play()
+              // }
+
+              // let shuffledInterview = this.shuffleArray(interviewUrl)
+              // console.log(shuffledInterview)
+
+              // for (let i = 0; i < shuffledInterview.length; i++) {
+              //   return shuffledInterview[i]
+              // }
+              // audio.src = this.shuffledInterview
+              // audio.play()
+
+              // for (let i = 0; i < shuffledInterview.length; i++) {
+              //   audio.src = shuffledInterview[i]
+              //   audio.play()
+              // }
+            })
+          })
+        })
+    },
+
+    // 配列をランダムにするメソッド
+    shuffleArray(sourceArr) {
+      // 元の配列の複製を作る
+      const array = sourceArr.concat()
+      // Fisher-Yatesのアルゴリズム？
+      const arrayLength = array.length
+      for (let i = arrayLength - 1; i >= 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1))
+        ;[array[i], array[randomIndex]] = [array[randomIndex], array[i]]
+      }
+      return array
+    },
+
+    stopInterview() {
+      console.log(this.shuffleArray)
+    },
   },
 }
 </script>
