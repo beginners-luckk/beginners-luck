@@ -6,6 +6,7 @@
     <button type="button" v-if="status == 'recording'" @click="stopButton">
       録音を終了する
     </button>
+    <div>{{ voiceUrl }}</div>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
       recorder: null, // 音声にアクセスする "MediaRecorder" のインスタンス
       audioData: [], // 入力された音声データ
       audioExtension: "", // 音声ファイルの拡張子
+      voiceUrl: [],
     }
   },
   methods: {
@@ -54,7 +56,8 @@ export default {
         a.href = url
         a.download = Math.floor(Date.now() / 1000) + this.audioExtension
         document.body.appendChild(a)
-        a.click()
+        console.log(url)
+        this.voiceUrl.push(url)
       })
       this.status = "ready"
     })
