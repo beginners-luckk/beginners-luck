@@ -6,8 +6,8 @@
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
-    <!-- <div v-for="(interviewList, index) in interviewLists" v-bind:key="index">
-      {{ index }}:{{ interviewList }}
+    <!-- <div v-for="(text, index) in textArray" v-bind:key="index">
+      {{ index }}:{{ textArray.text }}
     </div> -->
   </div>
 </template>
@@ -59,7 +59,6 @@ export default {
       this.count++ //次の質問
 
       this.judgeArray.push(this.goJudgePath)
-      console.log(this.judgeArray)
 
       // urlを取得して再生
       const storageRef = storage.ref(this.goJudgePath)

@@ -59,7 +59,7 @@ export default {
       this.count++ //次の質問
 
       this.judgeArray.push(this.goJudgePath)
-      console.log(this.judgeArray)
+      // console.log(this.judgeArray)
 
       // urlを取得して再生
       const storageRef = storage.ref(this.goJudgePath)
