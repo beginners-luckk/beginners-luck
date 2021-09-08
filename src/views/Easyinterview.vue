@@ -38,6 +38,20 @@ export default {
           fileName: "easy/yaritaikoto.mp3",
           fileText: "弊社でやりたいことは何ですか",
         },
+        {
+          fileName: "easy/yowami.mp3",
+          fileText:
+            "あなたの弱みを教えてください。また、それを改善するために何が必要だと考えていますか",
+        },
+        {
+          fileName: "easy/tsuyomiepisode.mp3",
+          fileText: "では、あなたの強みを活かしたエピソードは何かありますか",
+        },
+        {
+          fileName: "easy/ikasu.mp3",
+          fileText:
+            "なるほど、では、今後どのようにそれらの経験を活かしていきますか",
+        },
       ],
       count: 0,
     }
@@ -60,7 +74,7 @@ export default {
   },
   methods: {
     async playInterview() {
-      const storageRef = storage.ref("jobInterviews/zikopr.mp3")
+      const storageRef = storage.ref("jobInterviews/easyintro.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
