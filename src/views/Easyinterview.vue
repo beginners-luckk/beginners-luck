@@ -59,9 +59,9 @@ export default {
       })
   },
   methods: {
-    playInterview() {
+    async playInterview() {
       const storageRef = storage.ref("jobInterviews/zikopr.mp3")
-      storageRef.getDownloadURL().then((url) => {
+      await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
       const audio = new Audio()
