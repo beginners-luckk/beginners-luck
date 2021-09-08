@@ -6,9 +6,10 @@
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
-    <!-- <div v-for="intervie of interviews" :key="intervie.voice">
-      質問内容:{{ interviews }}
-    </div> -->
+    <div>🔽質問一覧🔽</div>
+    <div v-for="(text, index) in interviews" :key="index">
+      <li>{{ text }}</li>
+    </div>
   </div>
 </template>
 
@@ -19,10 +20,25 @@ export default {
   data() {
     return {
       imgPath: require("@/assets/easy面接官.jpg"),
-
+      interviewUrl: "",
       listArray: [],
       shuffledPathArray: [],
       judgeArray: [],
+      interviews: [],
+      fileList: [
+        {
+          fileName: "easy/syukatuziku.mp3",
+          fileText: "どのような軸で就職活動を進めていますか",
+        },
+        {
+          fileName: "easy/tsuyomi.mp3",
+          fileText: "あなたの強みを教えてください",
+        },
+        {
+          fileName: "easy/yaritaikoto.mp3",
+          fileText: "弊社でやりたいことは何ですか",
+        },
+      ],
       count: 0,
     }
   },
@@ -30,7 +46,7 @@ export default {
     // リスト取得
     const listRef = storageRef
     listRef
-      .child("jobInterviews")
+      .child("easy")
       .list()
       .then((res) => {
         res.items.forEach((doc) => {
@@ -44,12 +60,12 @@ export default {
   },
   methods: {
     playInterview() {
-      const storageRef = storage.ref("jobInterviews/syukatuziku.mp3")
+      const storageRef = storage.ref("jobInterviews/zikopr.mp3")
       storageRef.getDownloadURL().then((url) => {
-        this.interviews = url
+        this.interviewUrl = url
       })
       const audio = new Audio()
-      audio.src = this.interviews
+      audio.src = this.interviewUrl
       return audio.play()
     },
     nextInterview() {
@@ -60,6 +76,9 @@ export default {
 
       this.judgeArray.push(this.goJudgePath)
       // console.log(this.judgeArray)
+
+      this.checkFunction(this.goJudgePath)
+      console.log(this.interviews)
 
       // urlを取得して再生
       const storageRef = storage.ref(this.goJudgePath)
@@ -89,6 +108,14 @@ export default {
         ;[array[i], array[randomIndex]] = [array[randomIndex], array[i]]
       }
       return array
+    },
+    checkFunction(path) {
+      for (let i = 0; i < this.fileList.length; i++) {
+        if (path == this.fileList[i].fileName) {
+          // this.interviews.push(path)
+          this.interviews.push(this.fileList[i].fileText)
+        }
+      }
     },
 
     stopInterview() {},
