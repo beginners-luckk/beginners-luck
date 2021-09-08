@@ -6,40 +6,91 @@
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
+    <!-- <div v-for="(interviewList, index) in interviewLists" v-bind:key="index">
+      {{ index }}:{{ interviewList }}
+    </div> -->
   </div>
 </template>
 
 <script>
+import { storage, storageRef } from "../storage/storage"
+
 export default {
   data() {
     return {
       imgPath: require("@/assets/hard面接官.jpeg"),
-      interviews: [],
+
+      listArray: [],
+      shuffledPathArray: [],
+      judgeArray: [],
+      count: 0,
     }
+  },
+  created: function () {
+    // リスト取得
+    const listRef = storageRef
+    listRef
+      .child("jobInterviews")
+      .list()
+      .then((res) => {
+        res.items.forEach((doc) => {
+          this.getPath = doc.fullPath
+          this.listArray.push(this.getPath)
+        })
+      })
+      .then(() => {
+        this.shuffledPathArray = this.shuffleArray(this.listArray)
+      })
   },
   methods: {
     playInterview() {
+      const storageRef = storage.ref("jobInterviews/syukatuziku.mp3")
+      storageRef.getDownloadURL().then((url) => {
+        this.interviews = url
+      })
       const audio = new Audio()
+      audio.src = this.interviews
       return audio.play()
     },
     nextInterview() {
       const audio = new Audio()
 
-      // 配列をランダムに取得
-      for (let i = this.interviews.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1))
-        let tmp = this.interviews[i]
-        this.interviews[i] = this.interviews[j]
-        this.interviews[j] = tmp
-        if (tmp.isdone == false) {
-          audio.src = tmp.voice
-          tmp.isdone = true
-          return audio.play()
-        } else {
-          return
-        }
-      }
+      this.goJudgePath = this.shuffledPathArray[this.count]
+      this.count++ //次の質問
+
+      this.judgeArray.push(this.goJudgePath)
+      console.log(this.judgeArray)
+
+      // urlを取得して再生
+      const storageRef = storage.ref(this.goJudgePath)
+      storageRef
+        .getDownloadURL()
+        .then((url) => {
+          this.playUrl = url
+        })
+        .then(() => {
+          audio.src = this.playUrl
+        })
+        .then(() => {
+          audio.load()
+        })
+        .then(() => {
+          audio.play()
+        })
     },
+    // 配列をランダムにするメソッド
+    shuffleArray(sourceArr) {
+      // 元の配列の複製を作る
+      const array = sourceArr.concat()
+      // Fisher-Yatesのアルゴリズム？
+      const arrayLength = array.length
+      for (let i = arrayLength - 1; i >= 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1))
+        ;[array[i], array[randomIndex]] = [array[randomIndex], array[i]]
+      }
+      return array
+    },
+
     stopInterview() {},
   },
 }
@@ -47,10 +98,8 @@ export default {
 
 <style scoped>
 .interview {
-  background-color: black;
-}
-.interviewer {
-  width: 45rem;
-  height: 34rem;
+  display: flex;
+  text-align: center;
+  background-color: gray;
 }
 </style>

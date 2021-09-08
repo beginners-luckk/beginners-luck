@@ -6,59 +6,118 @@
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
-    <!-- <div v-for="intervie of interviews" :key="intervie.voice">
-      質問内容:{{ interviews }}
-    </div> -->
+    <div>🔽質問一覧🔽</div>
+    <div v-for="(text, index) in interviews" :key="index">
+      <li>{{ text }}</li>
+    </div>
   </div>
 </template>
 
 <script>
+import { storage, storageRef } from "../storage/storage"
+
 export default {
   data() {
     return {
       imgPath: require("@/assets/easy面接官.jpg"),
-      interviews: [
+      interviewUrl: "",
+      listArray: [],
+      shuffledPathArray: [],
+      judgeArray: [],
+      interviews: [],
+      fileList: [
         {
-          voice: "/yaritaikoto.mp3",
-          text: "弊社でやりたいことは何ですか？",
-          isdone: false,
+          fileName: "easy/syukatuziku.mp3",
+          fileText: "どのような軸で就職活動を進めていますか",
         },
         {
-          voice: "/tsuyomi.mp3",
-          text: "あなたの強みを教えてください",
-          isdone: false,
+          fileName: "easy/tsuyomi.mp3",
+          fileText: "あなたの強みを教えてください",
         },
         {
-          voice: "/syukatuziku.mp3",
-          text: "どのような軸で就職活動を進めていますか？",
-          isdone: false,
+          fileName: "easy/yaritaikoto.mp3",
+          fileText: "弊社でやりたいことは何ですか",
         },
       ],
+      count: 0,
     }
+  },
+  created: function () {
+    // リスト取得
+    const listRef = storageRef
+    listRef
+      .child("easy")
+      .list()
+      .then((res) => {
+        res.items.forEach((doc) => {
+          this.getPath = doc.fullPath
+          this.listArray.push(this.getPath)
+        })
+      })
+      .then(() => {
+        this.shuffledPathArray = this.shuffleArray(this.listArray)
+      })
   },
   methods: {
     playInterview() {
-      const audio = new Audio("/zikopr.mp3")
+      const storageRef = storage.ref("jobInterviews/zikopr.mp3")
+      storageRef.getDownloadURL().then((url) => {
+        this.interviewUrl = url
+      })
+      const audio = new Audio()
+      audio.src = this.interviewUrl
       return audio.play()
     },
     nextInterview() {
       const audio = new Audio()
 
-      // 配列をランダムに取得
-      for (let i = this.interviews.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1))
-        let tmp = this.interviews[i]
-        this.interviews[i] = this.interviews[j]
-        this.interviews[j] = tmp
-        if (tmp.isdone == false) {
-          audio.src = tmp.voice
-          tmp.isdone = true
-          return audio.play()
-        } else {
-          return
+      this.goJudgePath = this.shuffledPathArray[this.count]
+      this.count++ //次の質問
+
+      this.judgeArray.push(this.goJudgePath)
+      // console.log(this.judgeArray)
+
+      this.checkFunction(this.goJudgePath)
+      console.log(this.interviews)
+
+      // urlを取得して再生
+      const storageRef = storage.ref(this.goJudgePath)
+      storageRef
+        .getDownloadURL()
+        .then((url) => {
+          this.playUrl = url
+        })
+        .then(() => {
+          audio.src = this.playUrl
+        })
+        .then(() => {
+          audio.load()
+        })
+        .then(() => {
+          audio.play()
+        })
+    },
+    // 配列をランダムにするメソッド
+    shuffleArray(sourceArr) {
+      // 元の配列の複製を作る
+      const array = sourceArr.concat()
+      // Fisher-Yatesのアルゴリズム？
+      const arrayLength = array.length
+      for (let i = arrayLength - 1; i >= 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1))
+        ;[array[i], array[randomIndex]] = [array[randomIndex], array[i]]
+      }
+      return array
+    },
+    checkFunction(path) {
+      for (let i = 0; i < this.fileList.length; i++) {
+        if (path == this.fileList[i].fileName) {
+          // this.interviews.push(path)
+          this.interviews.push(this.fileList[i].fileText)
         }
       }
     },
+
     stopInterview() {},
   },
 }
