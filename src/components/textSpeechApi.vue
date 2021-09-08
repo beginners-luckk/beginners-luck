@@ -13,6 +13,10 @@
 </template>
 
 <script>
+// import { Howl } from "howler"
+// import testAudioObject from "../assets/synthesize-output.json"
+// console.log(testAudioObject)
+
 export default {
   data() {
     return {
@@ -38,6 +42,13 @@ export default {
   },
   methods: {
     playInterview() {
+      // const sound = new Howl({
+      //   src: [testAudioObject.audioContent],
+      //   format: ["mp3"],
+      //   html5: true,
+      // })
+      // sound.play()
+
       const audio = new Audio("/zikopr.mp3")
       return audio.play()
     },

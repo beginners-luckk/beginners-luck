@@ -1,15 +1,18 @@
 <template>
-  <div class="home">
-    <img
-      class="hiyoko"
-      alt="hiyoko-gif"
-      src="https://hiyokoyarou.com/wp-content/uploads/2015/09/piyopiyo.gif"
-    />
-    <div class="Home">
-      <h1>モードを選択してください</h1>
-      <h2>〜求める面接官像に合わせて練習することができます〜</h2>
+  <div>
+    <div class="home">
+      <img
+        class="hiyoko"
+        alt="hiyoko-gif"
+        src="https://hiyokoyarou.com/wp-content/uploads/2015/09/piyopiyo.gif"
+      />
+      <div class="Home">
+        <h1>モードを選択してください</h1>
+        <h2>〜求める面接官像に合わせて練習することができます〜</h2>
+      </div>
+      <HelloWorld msg="" />
     </div>
-    <HelloWorld msg="モードを選択してください" />
+    <div><router-view /></div>
   </div>
 </template>
 
@@ -31,6 +34,10 @@ export default {
   height: 50%;
 }
 
+.Home {
+  display: flex;
+  display: block;
+}
 .Home {
   display: flex;
   display: block;

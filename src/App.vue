@@ -1,24 +1,28 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/history">History</router-link>
+      <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
+      <router-link to="/AfterSignIn">After Sign In Page</router-link>
+
+      <router-link to="/Home">Home</router-link> |
+      <router-link to="/History">History</router-link>
     </div>
     <router-view />
     <!-- <text-to-speech /> -->
   </div>
 </template>
 <script>
-// import HelloWorld from "./components/HelloWorld.vue"
-// import practice from "./components/practice.vue"
+
 // import textToSpeech from "./components/textSpeechApi.vue"
 
 export default {
-  name: "App",
-  components: {
-    // HelloWorld,
-    // practice,
-    // textToSpeech,
+  methods: {
+    signIn() {
+      this.$store.dispatch("signInWithGoogle")
+    },
+    signOut() {
+      this.$store.dispatch("signOut")
+    },
   },
 }
 </script>
