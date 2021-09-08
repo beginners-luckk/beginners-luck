@@ -31,7 +31,12 @@ export default {
 <style>
 .hiyoko {
   width: 10%;
-  height: 49%;
+  height: 50%;
+}
+
+.Home {
+  display: flex;
+  display: block;
 }
 .Home {
   display: flex;

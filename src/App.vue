@@ -12,6 +12,7 @@
   </div>
 </template>
 <script>
+
 // import textToSpeech from "./components/textSpeechApi.vue"
 
 export default {
@@ -23,11 +24,6 @@ export default {
       this.$store.dispatch("signOut")
     },
   },
-  // components: {
-  //   HelloWorld,
-  //   practice,
-  //   textToSpeech,
-  // },
 }
 </script>
 <style>
