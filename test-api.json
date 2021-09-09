@@ -5,10 +5,10 @@
     "speakingRate": "1.00"
   },
   "input": {
-    "text": "仕事に必要なものとは、なんだと考えていますか"
+    "text": "業界の中で、当社を志望する理由を、具体的に述べてください"
   },
   "voice": {
     "languageCode": "ja-JP",
-    "name": "ja-JP-Standard-D"
+    "name": "ja-JP-Standard-C"
   }
 }
