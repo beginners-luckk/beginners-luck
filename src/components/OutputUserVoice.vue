@@ -9,6 +9,7 @@
       <audio controls v-bind:src="urls[1]"></audio>
     </div>
     <button @click="getUrls">test</button>
+    <button @click="deleateUrls">deleate</button>
   </div>
 </template>
 
@@ -27,9 +28,6 @@ export default {
     console.log("async")
     const user = firebase.auth().currentUser
     if (user !== null) {
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
       this.uid = user.uid
       console.log(this.uid)
     }
@@ -58,6 +56,11 @@ export default {
         .catch((error) => {
           console.log("Error getting documents: ", error)
         })
+    },
+    deleateUrls: function () {
+      this.db.doc(this.uid).update({
+        userUrl: firebase.firestore.FieldValue.delete(),
+      })
     },
   },
 }
