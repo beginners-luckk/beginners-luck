@@ -1,20 +1,24 @@
 <template>
   <div>
     <h1>After Sign In Page</h1>
-    <user-voice />
+    <user-voice /> <make-question />
     <button @click="signOut">Sign Out</button>
   </div>
 </template>
 
 <script>
-import UserVoice from "@/components/UserVoice.vue"
+import MakeQuestion from "../components/makeQuestion.vue"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
   components: {
+    MakeQuestion,
     UserVoice,
   },
-  signOut() {
-    this.$store.dispatch("signOut")
+  methods: {
+    signOut() {
+      this.$store.dispatch("signOut")
+    },
   },
 }
 </script>

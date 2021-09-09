@@ -8,17 +8,15 @@
       <p>２番目</p>
       <audio controls v-bind:src="voiceUrls[1]"></audio>
     </div>
-    <input-user-voice :voiceUrels="voiceUrls"></input-user-voice>
+    <UserVoice :voiceUrls="voiceUrls" />
   </div>
 </template>
 
 <script>
-import InputUserVoice from "./InputUserVoice.vue"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
-  components: {
-    InputUserVoice,
-  },
+  components: { UserVoice },
   data() {
     return {
       voiceUrls: [],

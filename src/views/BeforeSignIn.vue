@@ -7,7 +7,8 @@
   </div>
 </template>
 <script>
-import OutputUserVoice from "../components/OutputUserVoice.vue"
+import OutputUserVoice from "@/components/outputUserVoice.vue"
+
 export default {
   components: { OutputUserVoice },
   methods: {
