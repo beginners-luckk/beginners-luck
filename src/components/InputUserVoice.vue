@@ -6,16 +6,6 @@
     <button type="button" v-if="status == 'recording'" @click="stopButton">
       録音を終了する
     </button>
-    <!-- <div>
-      <div>
-        <p>１番目</p>
-        <audio controls v-bind:src="voiceUrls[0]"></audio>
-      </div>
-      <div>
-        <p>２番目</p>
-        <audio controls v-bind:src="voiceUrls[1]"></audio>
-      </div>
-    </div> -->
   </div>
 </template>
 
