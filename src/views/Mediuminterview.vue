@@ -46,7 +46,7 @@ export default {
         {
           fileName: "medium/leader.mp3",
           fileText:
-            "あなたにとって、「リーダーシップ」とはなんですか。また、そのような経験を教えてください",
+            "あなたにとって、「リーダーシップ」とは何ですか。また、そのような経験を教えてください",
         },
         {
           fileName: "medium/hitokoto.mp3",

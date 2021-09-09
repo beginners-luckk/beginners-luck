@@ -1,14 +1,14 @@
 {
   "audioConfig": {
     "audioEncoding": "MP3",
-    "pitch": "0.00",
+    "pitch": "-3.00",
     "speakingRate": "1.00"
   },
   "input": {
-    "text": "業界の中で、当社を志望する理由を、具体的に述べてください"
+    "text": "もうそのへんはどうでもいいからさ、次に、君を採用するメリットはなにかあるのかな"
   },
   "voice": {
     "languageCode": "ja-JP",
-    "name": "ja-JP-Standard-C"
+    "name": "ja-JP-Wavenet-D"
   }
 }

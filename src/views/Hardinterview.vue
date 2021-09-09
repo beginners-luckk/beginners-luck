@@ -5,10 +5,13 @@
     </div>
     <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
+    <div><button v-on:click="lastInterview">最後の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
-    <div>🔽質問一覧🔽</div>
-    <div v-for="(text, index) in interviews" :key="index">
-      <li>{{ text }}</li>
+    <button v-on:click="displayFunction">🔽質問一覧🔽</button>
+    <div v-if="this.display">
+      <div v-for="(text, index) in interviews" :key="index">
+        <li>{{ text }}</li>
+      </div>
     </div>
   </div>
 </template>
@@ -24,19 +27,110 @@ export default {
       listArray: [],
       shuffledPathArray: [],
       judgeArray: [],
+      display: false,
       interviews: [],
       fileList: [
         {
-          fileName: "easy/syukatuziku.mp3",
-          fileText: "どのような軸で就職活動を進めていますか",
+          fileName: "hard/iyagarase.mp3",
+          fileText: "ちょっと話長いんだよね、簡潔にまとめて",
         },
         {
-          fileName: "easy/tsuyomi.mp3",
-          fileText: "あなたの強みを教えてください",
+          fileName: "hard/kaesu.mp3",
+          fileText: "結局何が言いたいの",
         },
         {
-          fileName: "easy/yaritaikoto.mp3",
-          fileText: "弊社でやりたいことは何ですか",
+          fileName: "hard/rinen.mp3",
+          fileText: "当社の理念についてどう思う",
+        },
+        {
+          fileName: "hard/hensati.mp3",
+          fileText: "社会人としての偏差値はいくつだと思う",
+        },
+        {
+          fileName: "hard/reason.mp3",
+          fileText: "その理由は何",
+        },
+        {
+          fileName: "hard/pen.mp3",
+          fileText: "このペンを私に一万円で売ってみて",
+        },
+        {
+          fileName: "hard/mece.mp3",
+          fileText:
+            "さっきからMECEじゃないんだよね。そのへんに気を遣って、当社の弱みは何だと思う",
+        },
+        {
+          fileName: "hard/sibou.mp3",
+          fileText: "志望動機を簡単に話して",
+        },
+        {
+          fileName: "hard/yokunai.mp3",
+          fileText: "当社じゃなくても良くない",
+        },
+        {
+          fileName: "hard/doryoku.mp3",
+          fileText: "そのために何か努力してるの",
+        },
+        {
+          fileName: "hard/zikohyoka.mp3",
+          fileText: "今の時点で、この面接の自己評価は何点くらいだと思う",
+        },
+        {
+          fileName: "hard/gyakuni.mp3",
+          fileText: "君が面接官だったら、君自身を採用したいのかい",
+        },
+        {
+          fileName: "hard/eigo.mp3",
+          fileText: "英語とかはできるんだっけ",
+        },
+        {
+          fileName: "hard/pasokon.mp3",
+          fileText:
+            "君はパソコン触れるのかな。今の時代、ある程度スキルないとキツイよ",
+        },
+        {
+          fileName: "hard/syakai.mp3",
+          fileText: "今の社会に何が必要だと思う",
+        },
+        {
+          fileName: "hard/covid.mp3",
+          fileText: "アフターコロナの働き方について、「社会人」としてどう思う",
+        },
+        {
+          fileName: "hard/covid2.mp3",
+          fileText: "コロナ渦の政策についてどう思う",
+        },
+        {
+          fileName: "hard/gekimu.mp3",
+          fileText: "当社は激務だけど大丈夫なの",
+        },
+        {
+          fileName: "hard/turai.mp3",
+          fileText: "今までの人生で、一番辛かったことを教えて",
+        },
+        {
+          fileName: "hard/muiteru.mp3",
+          fileText: "当社より向いてる会社ありそうだけど",
+        },
+        {
+          fileName: "hard/yaritai.mp3",
+          fileText: "当社の事業で興味のあるものはなに。あと、何やりたいの",
+        },
+        {
+          fileName: "hard/yoitokoro.mp3",
+          fileText: "当社の良いところ、悪いところを挙げて",
+        },
+        {
+          fileName: "hard/saigo.mp3",
+          fileText: "何を思って、最期の時を迎えたいかな",
+        },
+        {
+          fileName: "hard/daizi.mp3",
+          fileText: "当社で働く上で、一番大事なことは何だと思ってるの",
+        },
+        {
+          fileName: "hard/merit.mp3",
+          fileText: "採用するメリットは何かあるのかな",
         },
       ],
       count: 0,
@@ -60,7 +154,7 @@ export default {
   },
   methods: {
     async playInterview() {
-      const storageRef = storage.ref("jobInterviews/zikopr.mp3")
+      const storageRef = storage.ref("jobInterviews/hardintro.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
@@ -96,6 +190,18 @@ export default {
         .then(() => {
           audio.play()
         })
+    },
+    async lastInterview() {
+      const storageRef = storage.ref("jobInterviews/hardLast.mp3")
+      await storageRef.getDownloadURL().then((url) => {
+        this.interviewUrl = url
+      })
+      const audio = new Audio()
+      audio.src = this.interviewUrl
+      return audio.play()
+    },
+    displayFunction() {
+      this.display = !this.display
     },
     // 配列をランダムにするメソッド
     shuffleArray(sourceArr) {
