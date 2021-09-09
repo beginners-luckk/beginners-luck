@@ -6,16 +6,6 @@
     <button type="button" v-if="status == 'recording'" @click="stopButton">
       録音を終了する
     </button>
-    <!-- <div>
-      <div>
-        <p>１番目</p>
-        <audio controls v-bind:src="voiceUrls[0]"></audio>
-      </div>
-      <div>
-        <p>２番目</p>
-        <audio controls v-bind:src="voiceUrls[1]"></audio>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -64,9 +54,11 @@ export default {
         let a = document.createElement("a")
         a.href = url
         document.body.appendChild(a)
-        // console.log(a)
-        // console.log(url)
+        console.log(audioBlob)
+        console.log(a)
+        console.log(url)
         this.voiceUrls.push(url)
+        localStorage.urls = this.voiceUrls
       })
       this.status = "ready"
     })
