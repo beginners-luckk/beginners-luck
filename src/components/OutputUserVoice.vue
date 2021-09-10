@@ -48,8 +48,8 @@ export default {
             console.log(doc.id, " => ", doc.data())
             const data = doc.data()
             data.id = doc.id
-            console.log(data)
-            console.log(data.userUrl)
+            console.log(data, "data")
+            console.log(data.userUrl, "this.userurl")
             this.urls = data.userUrl
           })
         })
@@ -61,6 +61,7 @@ export default {
       this.db.doc(this.uid).update({
         userUrl: firebase.firestore.FieldValue.delete(),
       })
+      console.log("deleate", this.urls)
     },
   },
 }

@@ -6,11 +6,15 @@
     <button type="button" v-if="status == 'recording'" @click="stopButton">
       録音を終了する
     </button>
+    <easy @start-recording="statButton" />
+    <easy @stop-recording="stopButton" />
   </div>
 </template>
 
 <script>
 import firebase from "firebase"
+import easy from "../views/Easyinterview.vue"
+
 export default {
   data() {
     return {
@@ -26,14 +30,17 @@ export default {
     user: function () {
       return this.$store.state.user
     },
+    easy,
   },
   methods: {
     startButton: function () {
+      console.log("start")
       this.status = "recording"
       this.audioData = []
       this.recorder.start()
     },
     stopButton: function () {
+      console.log("stop")
       this.recorder.stop()
       this.status = "ready"
       this.postUrls()
@@ -83,7 +90,6 @@ export default {
         this.voiceUrls.push(url)
         this.postUrls()
       })
-
       this.status = "ready"
     })
   },

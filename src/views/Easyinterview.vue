@@ -7,6 +7,12 @@
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="lastInterview">最後の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
+    <button type="button" v-if="status == 'ready'" @click="startButton">
+      録音を開始する
+    </button>
+    <button type="button" v-if="status == 'recording'" @click="stopButton">
+      録音を終了する
+    </button>
     <button v-on:click="displayFunction">🔽質問一覧🔽</button>
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
@@ -138,11 +144,16 @@ export default {
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
+      console.log("play-startButton-easy")
+      this.$emit("start-recoading")
       const audio = new Audio()
       audio.src = this.interviewUrl
       return audio.play()
     },
     nextInterview() {
+      console.log("stopButton-easy")
+      this.$emit("stop-recoading", this.status)
+      console.log(this.status)
       const audio = new Audio()
 
       this.goJudgePath = this.shuffledPathArray[this.count]
@@ -193,6 +204,8 @@ export default {
         const randomIndex = Math.floor(Math.random() * (i + 1))
         ;[array[i], array[randomIndex]] = [array[randomIndex], array[i]]
       }
+      console.log("startButton-easy")
+      this.$emit("start-recoading")
       return array
     },
     checkFunction(path) {
