@@ -60,6 +60,8 @@ export default {
   },
   methods: {
     playInterview() {
+      console.log("play-startButton-easy")
+      this.$emit("start-recoading")
       const storageRef = storage.ref("jobInterviews/zikopr.mp3")
       storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
@@ -69,6 +71,8 @@ export default {
       return audio.play()
     },
     nextInterview() {
+      console.log("stopButton-easy")
+      this.$emit("stop-recoading")
       const audio = new Audio()
 
       this.goJudgePath = this.shuffledPathArray[this.count]
@@ -107,6 +111,8 @@ export default {
         const randomIndex = Math.floor(Math.random() * (i + 1))
         ;[array[i], array[randomIndex]] = [array[randomIndex], array[i]]
       }
+      console.log("startButton-easy")
+      this.$emit("start-recoading")
       return array
     },
     checkFunction(path) {
