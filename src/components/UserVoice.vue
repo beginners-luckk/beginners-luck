@@ -1,10 +1,15 @@
 <template>
   <div>
+    <div v-if="isStart">
+      <button type="button" v-if="status == 'ready'" @click="startButton">
+        面接開始
+      </button>
+    </div>
     <button type="button" v-if="status == 'ready'" @click="startButton">
-      録音を開始する
+      次の質問
     </button>
     <button type="button" v-if="status == 'recording'" @click="stopButton">
-      録音を終了する
+      回答を終了する
     </button>
   </div>
 </template>
@@ -21,6 +26,7 @@ export default {
       audioExtension: "", // 音声ファイルの拡張子
       voiceUrls: [],
       db: firebase,
+      isStart: true,
     }
   },
   computed: {
