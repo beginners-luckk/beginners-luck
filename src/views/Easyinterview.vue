@@ -3,11 +3,24 @@
     <div class="interview">
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
-    <div><button v-on:click="playInterview">面接開始</button></div>
+    <user-voice />
+    <div v-if="isStart">
+      <button v-on:click="playInterview">面接開始</button>
+    </div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="lastInterview">最後の質問</button></div>
-    <div><button v-on:click="stopInterview">終了</button></div>
-    <button v-on:click="displayFunction">🔽質問一覧🔽</button>
+    <div v-if="isEnd">
+      <button v-on:click="stopInterview">
+        <router-link :to="{ name: 'History' }">面接終了</router-link>
+      </button>
+    </div>
+
+    <div v-if="isList">
+      <button v-on:click="displayFunction">🔽質問一覧🔽</button>
+    </div>
+    <div v-if="isClose">
+      <button v-on:click="closeFunction">一覧を閉じる</button>
+    </div>
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
         <li>{{ text }}</li>
@@ -18,12 +31,17 @@
 
 <script>
 import { storage, storageRef } from "../storage/storage"
+import userVoice from "../components/userVoice"
 
 export default {
   data() {
     return {
       imgPath: require("@/assets/easy面接官.jpg"),
       interviewUrl: "",
+      isStart: true,
+      isEnd: false,
+      isList: true,
+      isClose: false,
       listArray: [],
       shuffledPathArray: [],
       judgeArray: [],
@@ -115,6 +133,9 @@ export default {
       count: 0,
     }
   },
+  components: {
+    userVoice,
+  },
 
   created: function () {
     // リスト取得
@@ -140,6 +161,8 @@ export default {
       })
       const audio = new Audio()
       audio.src = this.interviewUrl
+      this.isStart = false
+      this.isEnd = true
       return audio.play()
     },
     nextInterview() {
@@ -181,6 +204,13 @@ export default {
       return audio.play()
     },
     displayFunction() {
+      this.display = !this.display
+      this.isList = false
+      this.isClose = true
+    },
+    closeFunction() {
+      this.isClose = false
+      this.isList = true
       this.display = !this.display
     },
     // 配列をランダムにするメソッド
