@@ -3,16 +3,14 @@
     <div class="interview">
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
-    <div><button v-on:click="playInterview">面接開始</button></div>
+    <div>
+      <user-voice @recoading-start="startRecoading" v-on:click="playInterview">
+        面接開始
+      </user-voice>
+    </div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="lastInterview">最後の質問</button></div>
     <div><button v-on:click="stopInterview">終了</button></div>
-    <button type="button" v-if="status == 'ready'" @click="startButton">
-      録音を開始する
-    </button>
-    <button type="button" v-if="status == 'recording'" @click="stopButton">
-      録音を終了する
-    </button>
     <button v-on:click="displayFunction">🔽質問一覧🔽</button>
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
@@ -24,8 +22,10 @@
 
 <script>
 import { storage, storageRef } from "../storage/storage"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
+  components: { UserVoice },
   data() {
     return {
       imgPath: require("@/assets/easy面接官.jpg"),
@@ -121,7 +121,6 @@ export default {
       count: 0,
     }
   },
-
   created: function () {
     // リスト取得
     const listRef = storageRef
@@ -216,7 +215,9 @@ export default {
         }
       }
     },
-
+    startRecoading() {
+      console.log("startRecoading-child")
+    },
     stopInterview() {},
   },
 }
