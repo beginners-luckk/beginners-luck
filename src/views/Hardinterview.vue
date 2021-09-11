@@ -3,9 +3,13 @@
     <div class="interview">
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
-    <div><button v-on:click="playInterview">面接開始</button></div>
+    <div>
+      <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
+      </user-voice>
+    </div>
+    <!-- <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
-    <div><button v-on:click="lastInterview">最後の質問</button></div>
+    <div><button v-on:click="lastInterview">最後の質問</button></div> -->
     <div><button v-on:click="stopInterview">終了</button></div>
     <button v-on:click="displayFunction">🔽質問一覧🔽</button>
     <div v-if="this.display">
@@ -18,6 +22,7 @@
 
 <script>
 import { storage, storageRef } from "../storage/storage"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
   data() {
@@ -29,6 +34,7 @@ export default {
       judgeArray: [],
       display: false,
       interviews: [],
+      isStarted: true,
       fileList: [
         {
           fileName: "hard/iyagarase.mp3",
@@ -136,6 +142,7 @@ export default {
       count: 0,
     }
   },
+  components: { UserVoice },
   created: function () {
     // リスト取得
     const listRef = storageRef
@@ -221,6 +228,15 @@ export default {
           // this.interviews.push(path)
           this.interviews.push(this.fileList[i].fileText)
         }
+      }
+    },
+    startRecoading() {
+      console.log("startRecoading-child")
+      if (this.isStarted == true) {
+        this.playInterview()
+        this.isStarted = false
+      } else {
+        this.nextInterview()
       }
     },
 
