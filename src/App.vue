@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <router-link to="/BeforeSignIn">Before Sign In Page</router-link>|
-
-    <router-link to="/AfterSignIn">After Sign In Page</router-link>|
-
-    <router-link to="/Home">Home</router-link> |
-    <router-link to="/History">History</router-link>
-
+    <div id="nav">
+      <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
+      <router-link to="/AfterSignIn">After Sign In Page</router-link>
+      <router-link to="/Home">Home</router-link> |
+      <router-link to="/History">History</router-link>
+    </div>
     <router-view />
     <!-- <text-to-speech /> -->
   </div>
@@ -18,9 +17,6 @@ export default {
   methods: {
     signIn() {
       this.$store.dispatch("signInWithGoogle")
-    },
-    signOut() {
-      this.$store.dispatch("signOut")
     },
   },
 }

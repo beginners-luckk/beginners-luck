@@ -3,14 +3,23 @@
     <div class="interview">
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
-    <div><button v-on:click="playInterview">面接開始</button></div>
-    <div><button v-on:click="nextInterview">次の質問</button></div>
-    <div><button v-on:click="lastInterview">最後の質問</button></div>
-    <div><button v-on:click="stopInterview">終了</button></div>
-    <button v-on:click="displayFunction">🔽質問一覧🔽</button>
+    <div>
+      <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
+      </user-voice>
+    </div>
+
+    <div v-if="isList">
+      <button v-on:click="displayFunction" class="list-btn">質問リスト</button>
+    </div>
+    <div v-if="isClose">
+      <button v-on:click="closeFunction" class="list-btn">閉じる</button>
+    </div>
+
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
-        <li>{{ text }}</li>
+        <ul>
+          <li>{{ text }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -18,8 +27,10 @@
 
 <script>
 import { storage, storageRef } from "../storage/storage"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
+  components: { UserVoice },
   data() {
     return {
       imgPath: require("@/assets/easy面接官.jpg"),
@@ -27,8 +38,11 @@ export default {
       listArray: [],
       shuffledPathArray: [],
       judgeArray: [],
-      interviews: [],
+      interviews: ["自己PR"],
       display: false,
+      isStarted: true,
+      isList: true,
+      isClose: false,
       fileList: [
         {
           fileName: "easy/syukatuziku.mp3",
@@ -115,7 +129,6 @@ export default {
       count: 0,
     }
   },
-
   created: function () {
     // リスト取得
     const listRef = storageRef
@@ -138,11 +151,13 @@ export default {
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
+      console.log("playint")
       const audio = new Audio()
       audio.src = this.interviewUrl
       return audio.play()
     },
     nextInterview() {
+      console.log("nextint")
       const audio = new Audio()
 
       this.goJudgePath = this.shuffledPathArray[this.count]
@@ -182,7 +197,15 @@ export default {
     },
     displayFunction() {
       this.display = !this.display
+      this.isList = false
+      this.isClose = true
     },
+    closeFunction() {
+      this.isClose = false
+      this.isList = true
+      this.display = !this.display
+    },
+
     // 配列をランダムにするメソッド
     shuffleArray(sourceArr) {
       // 元の配列の複製を作る
@@ -201,6 +224,15 @@ export default {
           // this.interviews.push(path)
           this.interviews.push(this.fileList[i].fileText)
         }
+      }
+    },
+    startRecoading() {
+      console.log("startRecoading-child")
+      if (this.isStarted == true) {
+        this.playInterview()
+        this.isStarted = false
+      } else {
+        this.nextInterview()
       }
     },
 
@@ -229,5 +261,33 @@ export default {
   width: 45rem;
   height: 28rem;
   margin: 0 auto;
+}
+.list-btn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-left: solid 4px #668ad8;
+  border-right: solid 4px #668ad8;
+  color: #668ad8;
+  background: #e1f3ff;
+  transition: 0.4s;
+}
+.list-btn:hover {
+  background: #668ad8;
+  color: #fff;
+}
+ul,
+ol {
+  background: #dadada; /*灰色に*/
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px silver;
+  padding: 0.5em 0.5em 0.5em 2em;
+}
+ul li,
+ol li {
+  line-height: 1.5;
+  padding: 0.5em 0;
 }
 </style>
