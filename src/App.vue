@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
+    <router-link to="/BeforeSignIn">Before Sign In Page</router-link>|
 
-    <router-link to="/AfterSignIn">After Sign In Page</router-link>
+    <router-link to="/AfterSignIn">After Sign In Page</router-link>|
 
     <router-link to="/Home">Home</router-link> |
     <router-link to="/History">History</router-link>
@@ -28,6 +28,7 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 25px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

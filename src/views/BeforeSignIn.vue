@@ -4,6 +4,7 @@
       <h1 class="title">Job</h1>
       <h1 class="title">interview</h1>
       <button class="login" @click="signIn">LOGIN</button>
+
       <div>
         <img
           class="bg"
@@ -43,5 +44,6 @@ export default {
 }
 .bg-img {
   background-image: url(https://www.illust-pocket.com/wp-content/uploads/2016/07/516.jpg);
+  background-size: 100% auto;
 }
 </style>
