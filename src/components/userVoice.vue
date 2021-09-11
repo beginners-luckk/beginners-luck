@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="side">
     <div v-if="isStart">
       <div v-if="isBigi">
         <button
@@ -12,7 +12,7 @@
         </button>
       </div>
     </div>
-    <div>
+    <div class="side">
       <button
         type="button"
         v-if="status == 'ready'"
@@ -28,7 +28,7 @@
           @click="lastButton"
           class="basic-btn"
         >
-          最後の質問
+          逆質問
         </button>
       </div>
     </div>
@@ -146,8 +146,11 @@ export default {
 </script>
 
 <style>
+.side {
+  display: flex;
+  justify-content: center;
+}
 .basic-btn {
-  display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
   background: #668ad8; /*ボタン色*/
@@ -162,13 +165,13 @@ export default {
   border-bottom: none; /*線を消す*/
 }
 .go-history {
-  display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
   background: #ff4500; /*ボタン色*/
   color: #fff;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
+  margin-left: 33rem;
 }
 .go-history:active {
   /*ボタンを押したとき*/
