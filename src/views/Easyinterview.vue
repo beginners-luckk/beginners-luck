@@ -7,10 +7,19 @@
       <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
       </user-voice>
     </div>
-    <button v-on:click="displayFunction">🔽質問一覧🔽</button>
+
+    <div v-if="isList">
+      <button v-on:click="displayFunction" class="list-btn">質問リスト</button>
+    </div>
+    <div v-if="isClose">
+      <button v-on:click="closeFunction" class="list-btn">閉じる</button>
+    </div>
+
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
-        <li>{{ text }}</li>
+        <ul>
+          <li>{{ text }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -32,6 +41,8 @@ export default {
       interviews: [],
       display: false,
       isStarted: true,
+      isList: true,
+      isClose: false,
       fileList: [
         {
           fileName: "easy/syukatuziku.mp3",
@@ -186,7 +197,15 @@ export default {
     },
     displayFunction() {
       this.display = !this.display
+      this.isList = false
+      this.isClose = true
     },
+    closeFunction() {
+      this.isClose = false
+      this.isList = true
+      this.display = !this.display
+    },
+
     // 配列をランダムにするメソッド
     shuffleArray(sourceArr) {
       // 元の配列の複製を作る
@@ -242,5 +261,33 @@ export default {
   width: 45rem;
   height: 28rem;
   margin: 0 auto;
+}
+.list-btn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-left: solid 4px #668ad8;
+  border-right: solid 4px #668ad8;
+  color: #668ad8;
+  background: #e1f3ff;
+  transition: 0.4s;
+}
+.list-btn:hover {
+  background: #668ad8;
+  color: #fff;
+}
+ul,
+ol {
+  background: #dadada; /*灰色に*/
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px silver;
+  padding: 0.5em 0.5em 0.5em 2em;
+}
+ul li,
+ol li {
+  line-height: 1.5;
+  padding: 0.5em 0;
 }
 </style>
