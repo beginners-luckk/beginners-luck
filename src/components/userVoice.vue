@@ -64,6 +64,7 @@ export default {
       isStart: true,
       isBigi: true,
       isEnd: false,
+      count: 0,
     }
   },
   computed: {
@@ -92,7 +93,6 @@ export default {
       console.log("stop")
       this.recorder.stop()
       this.status = "ready"
-      this.postUrls()
     },
     getExtension(audioType) {
       let extension = "wav"
@@ -115,7 +115,24 @@ export default {
           userUrl: this.voiceUrls,
         })
         .then(() => {
-          console.log("Document successfully written!")
+          console.log("url successfully written!")
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error)
+        })
+    },
+    postCount() {
+      console.log("postCount")
+      this.count++
+      console.log(this.count, "this.count")
+      const id = this.user.uid
+      const ref = this.db.firestore().collection("users").doc(id)
+      return ref
+        .update({
+          count: this.count,
+        })
+        .then(() => {
+          console.log("count successfully written!")
         })
         .catch((error) => {
           console.error("Error writing document: ", error)
@@ -138,6 +155,7 @@ export default {
         console.log(url)
         this.voiceUrls.push(url)
         this.postUrls()
+        this.postCount()
       })
       this.status = "ready"
     })

@@ -31,7 +31,7 @@
                   <td>{{ item.no }}</td>
                   <td>{{ item.mode }}</td>
                   <td>{{ item.date }}</td>
-                  <td>{{ item.gotodetail }}</td>
+                  <td>{{ item.gotodetail }}<output-user-voice /></td>
                 </tr>
               </tbody>
             </table>
@@ -39,7 +39,6 @@
         </div>
       </div>
     </div>
-    <output-user-voice />
   </div>
 </template>
 

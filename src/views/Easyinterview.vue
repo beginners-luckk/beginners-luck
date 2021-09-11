@@ -228,7 +228,7 @@ export default {
     },
     startRecoading() {
       console.log("startRecoading-child")
-      if (this.isStarted == true) {
+      if (this.isStarted === true) {
         this.playInterview()
         this.isStarted = false
       } else {
