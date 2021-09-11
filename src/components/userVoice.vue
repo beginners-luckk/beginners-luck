@@ -12,7 +12,7 @@
         </button>
       </div>
     </div>
-    <div class="side">
+    <div class="side" v-if="isNext">
       <button
         type="button"
         v-if="status == 'ready'"
@@ -64,6 +64,7 @@ export default {
       isStart: true,
       isBigi: true,
       isEnd: false,
+      isNext: false,
     }
   },
   computed: {
@@ -80,6 +81,7 @@ export default {
       this.recorder.start()
       this.isBigi = false
       this.isEnd = true
+      this.isNext = true
     },
     lastButton: function () {
       console.log("last-start")
