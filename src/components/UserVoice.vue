@@ -1,21 +1,31 @@
 <template>
   <div>
     <div v-if="isStart">
-      <button type="button" v-if="status == 'ready'" @click="startButton">
-        面接開始
-      </button>
+      <div v-if="isBigi">
+        <button type="button" v-if="status == 'ready'" @click="startButton">
+          面接開始
+        </button>
+      </div>
     </div>
     <div>
       <button type="button" v-if="status == 'ready'" @click="startButton">
         次の質問
       </button>
-      <button type="button" v-if="status == 'ready'" @click="lastButton">
-        最後の質問
-      </button>
+      <div>
+        <button type="button" v-if="status == 'ready'" @click="lastButton">
+          最後の質問
+        </button>
+      </div>
     </div>
     <button type="button" v-if="status == 'recording'" @click="stopButton">
       回答を終了する
     </button>
+
+    <div v-if="isEnd">
+      <router-link :to="{ name: 'History' }"
+        ><button>面接終了</button></router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -32,6 +42,8 @@ export default {
       voiceUrls: [],
       db: firebase,
       isStart: true,
+      isBigi: true,
+      isEnd: false,
     }
   },
   computed: {
@@ -46,6 +58,8 @@ export default {
       this.status = "recording"
       this.audioData = []
       this.recorder.start()
+      this.isBigi = false
+      this.isEnd = true
     },
     lastButton: function () {
       console.log("last-start")
