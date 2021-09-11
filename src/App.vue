@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
-      <router-link to="/AfterSignIn">After Sign In Page</router-link>
+      <router-link to="/BeforeSignIn">Before Sign In Page</router-link>|
+      <router-link to="/AfterSignIn">After Sign In Page</router-link>|
       <router-link to="/Home">Home</router-link> |
       <router-link to="/History">History</router-link>
     </div>

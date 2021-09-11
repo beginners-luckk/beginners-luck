@@ -25,7 +25,7 @@ export default {
 .bg {
   width: 50%;
   height: 60%;
-  padding-top: 3%;
+  padding-top: 20%;
 }
 
 .title1 {
@@ -44,8 +44,9 @@ export default {
 }
 .login {
   width: 5%;
-  height: 10%;
-  margin-top: 17%;
+  height: 5%;
+  margin-top: 16%;
+  position: absolute;
 }
 .bg-img {
   background-image: url(https://www.illust-pocket.com/wp-content/uploads/2016/07/516.jpg);
