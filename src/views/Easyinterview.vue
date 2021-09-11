@@ -3,10 +3,10 @@
     <div class="interview">
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
-    <div><button v-on:click="playInterview">面接開始</button></div>
-    <div><button v-on:click="nextInterview">次の質問</button></div>
-    <div><button v-on:click="lastInterview">最後の質問</button></div>
-    <div><button v-on:click="stopInterview">終了</button></div>
+    <div>
+      <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
+      </user-voice>
+    </div>
     <button v-on:click="displayFunction">🔽質問一覧🔽</button>
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
@@ -18,8 +18,10 @@
 
 <script>
 import { storage, storageRef } from "../storage/storage"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
+  components: { UserVoice },
   data() {
     return {
       imgPath: require("@/assets/easy面接官.jpg"),
@@ -29,6 +31,7 @@ export default {
       judgeArray: [],
       interviews: [],
       display: false,
+      isStarted: true,
       fileList: [
         {
           fileName: "easy/syukatuziku.mp3",
@@ -115,7 +118,6 @@ export default {
       count: 0,
     }
   },
-
   created: function () {
     // リスト取得
     const listRef = storageRef
@@ -138,11 +140,13 @@ export default {
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
+      console.log("playint")
       const audio = new Audio()
       audio.src = this.interviewUrl
       return audio.play()
     },
     nextInterview() {
+      console.log("nextint")
       const audio = new Audio()
 
       this.goJudgePath = this.shuffledPathArray[this.count]
@@ -201,6 +205,15 @@ export default {
           // this.interviews.push(path)
           this.interviews.push(this.fileList[i].fileText)
         }
+      }
+    },
+    startRecoading() {
+      console.log("startRecoading-child")
+      if (this.isStarted == true) {
+        this.playInterview()
+        this.isStarted = false
+      } else {
+        this.nextInterview()
       }
     },
 
