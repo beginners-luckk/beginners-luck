@@ -3,10 +3,14 @@
     <div class="interview">
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
-    <div><button v-on:click="playInterview">面接開始</button></div>
+    <div>
+      <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
+      </user-voice>
+    </div>
+    <!-- <div><button v-on:click="playInterview">面接開始</button></div>
     <div><button v-on:click="nextInterview">次の質問</button></div>
     <div><button v-on:click="lastInterview">最後の質問</button></div>
-    <div><button v-on:click="stopInterview">終了</button></div>
+    <div><button v-on:click="stopInterview">終了</button></div> -->
     <button v-on:click="displayFunction">🔽質問一覧🔽</button>
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
@@ -18,8 +22,10 @@
 
 <script>
 import { storage, storageRef } from "../storage/storage"
+import UserVoice from "@/components/userVoice.vue"
 
 export default {
+  components: { UserVoice },
   data() {
     return {
       imgPath: require("@/assets/med面接官.png"),
@@ -29,6 +35,7 @@ export default {
       judgeArray: [],
       interviews: [],
       display: false,
+      isStarted: true,
       fileList: [
         {
           fileName: "medium/tansyo.mp3",
@@ -207,6 +214,15 @@ export default {
           // this.interviews.push(path)
           this.interviews.push(this.fileList[i].fileText)
         }
+      }
+    },
+    startRecoading() {
+      console.log("startRecoading-child")
+      if (this.isStarted == true) {
+        this.playInterview()
+        this.isStarted = false
+      } else {
+        this.nextInterview()
       }
     },
 
