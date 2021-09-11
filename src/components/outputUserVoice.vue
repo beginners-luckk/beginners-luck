@@ -1,12 +1,32 @@
 <template>
   <div>
     <div>
-      <p>１番目</p>
+      <p>１問目</p>
       <audio controls v-bind:src="urls[0]"></audio>
     </div>
     <div>
-      <p>２番目</p>
-      <audio controls v-bind:src="urls[1]"></audio>
+      <p>２問目</p>
+      <audio controls v-bind:src="urls[2]"></audio>
+    </div>
+    <div>
+      <p>３問目</p>
+      <audio controls v-bind:src="urls[3]"></audio>
+    </div>
+    <div>
+      <p>４問目</p>
+      <audio controls v-bind:src="urls[4]"></audio>
+    </div>
+    <div>
+      <p>５問目</p>
+      <audio controls v-bind:src="urls[5]"></audio>
+    </div>
+    <div>
+      <p>６問目</p>
+      <audio controls v-bind:src="urls[6]"></audio>
+    </div>
+    <div>
+      <p>７問目</p>
+      <audio controls v-bind:src="urls[7]"></audio>
     </div>
     <button @click="getUrls">test</button>
     <button @click="deleateUrls">deleate</button>
