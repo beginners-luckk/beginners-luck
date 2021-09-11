@@ -1,8 +1,15 @@
 <template>
   <div>
-    <h1 class="title">Job</h1>
-    <h1 class="title">interview</h1>
-    <button class="login" @click="signIn">LOGIN</button>
+    <div class="bg-img">
+      <h1 class="title1">Job</h1>
+      <h1 class="title2">interview</h1>
+      <button class="login" @click="signIn">LOGIN</button>
+      <img
+        class="bg"
+        alt="bc-gif"
+        src="https://img.gifmagazine.net/gifmagazine/images/2998664/original.gif"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -15,7 +22,38 @@ export default {
 }
 </script>
 <style>
-.title {
+.bg {
+  width: 50%;
+  height: 60%;
+  padding-top: 3%;
+}
+
+.title1 {
   text-align: center;
+  font-size: 350%;
+  font-family: cursive;
+  position: absolute;
+  margin-top: 5%;
+}
+.title2 {
+  text-align: center;
+  font-size: 350%;
+  font-family: cursive;
+  position: absolute;
+  margin-top: 10%;
+}
+.login {
+  width: 5%;
+  height: 10%;
+  margin-top: 17%;
+}
+.bg-img {
+  background-image: url(https://www.illust-pocket.com/wp-content/uploads/2016/07/516.jpg);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
