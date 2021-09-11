@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>After Sign In Page</h1>
+    <h1>テスト用</h1>
     <user-voice /> <make-question />
     <button @click="signOut">Sign Out</button>
   </div>
