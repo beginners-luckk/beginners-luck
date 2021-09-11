@@ -5,9 +5,14 @@
         面接開始
       </button>
     </div>
-    <button type="button" v-if="status == 'ready'" @click="startButton">
-      次の質問
-    </button>
+    <div>
+      <button type="button" v-if="status == 'ready'" @click="startButton">
+        次の質問
+      </button>
+      <button type="button" v-if="status == 'ready'" @click="lastButton">
+        最後の質問
+      </button>
+    </div>
     <button type="button" v-if="status == 'recording'" @click="stopButton">
       回答を終了する
     </button>
@@ -38,6 +43,13 @@ export default {
     startButton: function () {
       console.log("start")
       this.$emit("recoading-start")
+      this.status = "recording"
+      this.audioData = []
+      this.recorder.start()
+    },
+    lastButton: function () {
+      console.log("last-start")
+      this.$emit("last-int")
       this.status = "recording"
       this.audioData = []
       this.recorder.start()

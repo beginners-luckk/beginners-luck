@@ -4,9 +4,9 @@
       <img class="interviewer" v-bind:src="imgPath" alt="" />
     </div>
     <div>
-      <user-voice @recoading-start="startRecoading"> </user-voice>
+      <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
+      </user-voice>
     </div>
-    <div><button v-on:click="lastInterview">最後の質問</button></div>
     <button v-on:click="displayFunction">🔽質問一覧🔽</button>
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
