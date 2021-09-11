@@ -38,7 +38,7 @@ export default {
       listArray: [],
       shuffledPathArray: [],
       judgeArray: [],
-      interviews: [],
+      interviews: ["自己PRやガクチカ"],
       display: false,
       isList: true,
       isClose: false,
