@@ -7,14 +7,19 @@
       <user-voice @recoading-start="startRecoading" @last-int="lastInterview">
       </user-voice>
     </div>
-    <!-- <div><button v-on:click="playInterview">面接開始</button></div>
-    <div><button v-on:click="nextInterview">次の質問</button></div>
-    <div><button v-on:click="lastInterview">最後の質問</button></div>
-    <div><button v-on:click="stopInterview">終了</button></div> -->
-    <button v-on:click="displayFunction">🔽質問一覧🔽</button>
+
+    <div v-if="isList">
+      <button v-on:click="displayFunction" class="list-btn">質問リスト</button>
+    </div>
+    <div v-if="isClose">
+      <button v-on:click="closeFunction" class="list-btn">閉じる</button>
+    </div>
+
     <div v-if="this.display">
       <div v-for="(text, index) in interviews" :key="index">
-        <li>{{ text }}</li>
+        <ul>
+          <li>{{ text }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -35,6 +40,8 @@ export default {
       judgeArray: [],
       interviews: [],
       display: false,
+      isList: true,
+      isClose: false,
       isStarted: true,
       fileList: [
         {
@@ -194,6 +201,13 @@ export default {
       return audio.play()
     },
     displayFunction() {
+      this.display = !this.display
+      this.isList = false
+      this.isClose = true
+    },
+    closeFunction() {
+      this.isClose = false
+      this.isList = true
       this.display = !this.display
     },
     // 配列をランダムにするメソッド
