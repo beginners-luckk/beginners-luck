@@ -38,7 +38,7 @@ export default {
       listArray: [],
       shuffledPathArray: [],
       judgeArray: [],
-      interviews: [],
+      interviews: ["自己PR"],
       display: false,
       isStarted: true,
       isList: true,
