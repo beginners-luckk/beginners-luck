@@ -5,43 +5,46 @@
     </div>
     <div class="item">
       <figure class="image">
-        <img
+        <img v-bind:src="imgPath" alt="" />
+        <!-- <img
           src="https://i0.wp.com/sozaido.site/wp-content/uploads/2019/08/r00831c.jpg?fit=428%2C400&ssl=1"
           alt=""
-        />
+        /> -->
       </figure>
       <p class="title">Easy</p>
       <p class="description">優しく話しやすい雰囲気の面接</p>
       <router-link :to="{ name: 'Easy' }"
-        ><p class="link"><a href="#">面接画面へ</a></p></router-link
+        ><p class="link"><a href="#">入室</a></p></router-link
       >
     </div>
     <div class="item">
       <figure class="image">
-        <img
+        <!-- <img
           src="https://i1.wp.com/sozaido.site/wp-content/uploads/2019/07/r00826.png?w=632&ssl=1"
           alt=""
-        />
+        /> -->
+        <img v-bind:src="imgPath2" alt="" />
       </figure>
       <p class="title">Medium</p>
       <p class="description">
         あまり感情を表に出さず、淡々と質問がとんでくる面接
       </p>
       <router-link :to="{ name: 'Medium' }">
-        <p class="link"><a href="#">面接画面へ</a></p></router-link
+        <p class="link"><a href="#">入室</a></p></router-link
       >
     </div>
     <div class="item">
       <figure class="image">
-        <img
+        <!-- <img
           src="https://thumb.ac-illust.com/2c/2cdb2a810ce6e889780ef4f450583c91_t.jpeg"
           alt=""
-        />
+        /> -->
+        <img v-bind:src="imgPath3" alt="" />
       </figure>
       <p class="title">Hard</p>
       <p class="description">圧迫面接に近い雰囲気を味わえる、、、、</p>
       <router-link :to="{ name: 'Hard' }">
-        <p class="link"><a href="#">面接画面へ</a></p></router-link
+        <p class="link"><a href="#">入室</a></p></router-link
       >
     </div>
   </div>
@@ -50,6 +53,13 @@
 <script>
 export default {
   name: "HelloWorld",
+  data() {
+    return {
+      imgPath: require("@/assets/easydoor.jpeg"),
+      imgPath2: require("@/assets/meddoor.png"),
+      imgPath3: require("@/assets/harddoor 2.jpg"),
+    }
+  },
   props: {
     msg: String,
   },

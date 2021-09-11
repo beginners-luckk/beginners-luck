@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="home">
-      <img
-        class="hiyoko"
-        alt="hiyoko-gif"
-        src="https://hiyokoyarou.com/wp-content/uploads/2015/09/piyopiyo.gif"
-      />
+      <h1 class="page-title" data-en="job interview">面接くん</h1>
       <div class="Home">
         <h1>モードを選択してください</h1>
         <h2>〜求める面接官像に合わせて練習することができます〜</h2>
@@ -13,6 +9,11 @@
       <HelloWorld msg="" />
     </div>
     <div><router-view /></div>
+    <img
+      class="hiyoko"
+      alt="hiyoko-gif"
+      src="https://hiyokoyarou.com/wp-content/uploads/2015/09/piyopiyo.gif"
+    />
   </div>
 </template>
 
@@ -41,5 +42,28 @@ export default {
 .Home {
   display: flex;
   display: block;
+}
+.page-title {
+  position: relative;
+  padding-top: 50px;
+  padding-left: 30px;
+  font-size: 4.8rem;
+}
+.page-title span {
+  position: relative;
+  z-index: 2;
+}
+.page-title::before {
+  content: attr(data-en);
+  position: absolute;
+  margin-left: 33rem;
+  transform: rotate(-5deg);
+  top: -20px;
+  left: 0;
+  color: gray;
+  font-size: 5rem;
+  font-weight: 400;
+  font-family: luxus-brut, cursive;
+  font-style: italic;
 }
 </style>
