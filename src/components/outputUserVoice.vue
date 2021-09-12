@@ -90,8 +90,6 @@
     <div v-if="count > 29">
       <audio controls v-bind:src="urls[29]"></audio>
     </div>
-    <button @click="getUrls">test</button>
-    <button @click="deleateUrls">deleate</button>
   </div>
 </template>
 
@@ -108,18 +106,15 @@ export default {
     }
   },
   created() {
-    console.log("created-output")
     const user = firebase.auth().currentUser
     if (user !== null) {
       this.uid = user.uid
-      console.log(this.uid)
     }
     this.getUrls()
     this.getCount()
   },
   methods: {
     getUrls: function () {
-      console.log("getUrls")
       const id = this.uid
       const ref = this.db
       ref
@@ -131,8 +126,6 @@ export default {
             console.log(doc.id, " => ", doc.data())
             const data = doc.data()
             data.id = doc.id
-            console.log(data, "data")
-            console.log(data.userUrl, "this.userurl")
             this.urls = data.userUrl
           })
         })
@@ -141,7 +134,6 @@ export default {
         })
     },
     getCount: function () {
-      console.log("getCount")
       const id = this.uid
       const ref = this.db
       ref

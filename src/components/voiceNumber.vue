@@ -103,23 +103,14 @@ export default {
     }
   },
   created() {
-    console.log("created-number")
     const user = firebase.auth().currentUser
     if (user !== null) {
       this.uid = user.uid
-      console.log(this.uid)
     }
     this.getCount()
   },
-  // computed() {
-  //   const num = this.count
-  //   console.log(num, "num")
-  //   this.numbers.length = 3
-  //   return this.numbers
-  // },
   methods: {
     getCount: function () {
-      console.log("getCount")
       const id = this.uid
       const ref = this.db
       ref
@@ -131,7 +122,6 @@ export default {
             console.log(doc.id, " => ", doc.data())
             const data = doc.data()
             data.id = doc.id
-            console.log(data, "data")
             console.log(data.count, "this.count")
             this.count = data.count
           })
@@ -146,16 +136,20 @@ export default {
 <style>
 .box {
   margin: 0px;
+  border: 0px;
+  padding: 0px;
 }
 .number {
+  color: gray;
   width: auto;
   height: 58.67px;
   vertical-align: auto;
-}
-.text {
-  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px dotted silver;
+}
+.text {
+  font-size: 30px;
 }
 </style>

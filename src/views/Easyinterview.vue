@@ -28,6 +28,7 @@
 <script>
 import { storage, storageRef } from "../storage/storage"
 import UserVoice from "@/components/userVoice.vue"
+import firebase from "firebase"
 
 export default {
   components: { UserVoice },
@@ -127,6 +128,7 @@ export default {
         },
       ],
       count: 0,
+      db: firebase.firestore().collection("users"),
     }
   },
   created: function () {
@@ -144,6 +146,11 @@ export default {
       .then(() => {
         this.shuffledPathArray = this.shuffleArray(this.listArray)
       })
+  },
+  computed: {
+    user: function () {
+      return this.$store.state.user
+    },
   },
   methods: {
     async playInterview() {
@@ -196,6 +203,17 @@ export default {
       })
       const audio = new Audio()
       audio.src = this.interviewUrl
+      this.interviews.push("逆質問")
+      //postInterviews
+      const id = this.user.uid
+      const Data = { interviews: this.interviews }
+      this.db
+        .doc(id)
+        .update(Data)
+        .then(() => {
+          console.log("Int successfully written!")
+        })
+      //postInt:comp.
       return audio.play()
     },
     displayFunction() {

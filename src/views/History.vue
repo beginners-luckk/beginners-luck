@@ -13,13 +13,15 @@
         <table class="table">
           <thead class="thead">
             <tr class="thead">
-              <th class="thead">No.</th>
+              <th class="thead"></th>
+              <th class="thead-int">Interview</th>
               <th class="thead">YourAnsewer</th>
             </tr>
           </thead>
           <tbody class="tbody">
             <tr>
               <td><voicenumber /></td>
+              <td><interview /></td>
               <td><output-user-voice /></td>
             </tr>
           </tbody>
@@ -35,11 +37,12 @@
 </template>
 
 <script>
+import interview from "../components/interviiew.vue"
 import outputUserVoice from "../components/outputUserVoice.vue"
 import voicenumber from "../components/voiceNumber.vue"
 
 export default {
-  components: { outputUserVoice, voicenumber },
+  components: { outputUserVoice, voicenumber, interview },
   data() {
     return {
       items: [
@@ -52,22 +55,26 @@ export default {
 }
 </script>
 <style>
-.wrapper {
-  padding-right: 100px;
-  padding-left: 100px;
-}
-.container {
-  padding-right: 100px;
-  padding-left: 100px;
-}
 .table {
   margin: auto;
   width: 70%;
 }
 .thead {
   font-size: 30px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px dotted black;
   padding: 0px;
+  margin: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+.thead-int {
+  font-size: 30px;
+  border-bottom: 1px dotted black;
+  padding-right: 30px;
+  margin: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  text-align: center;
 }
 .tbody {
   margin: auto;
