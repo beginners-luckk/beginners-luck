@@ -1,62 +1,75 @@
 <template>
   <div>
     <div class="wrapper">
-      <div style="margin: 20px">
-        <pre>
-過去に受けた面接の履歴を表示しています。"GoToDetail"から詳細を確認できます！</pre
-        >
-      </div>
-      <link
+      <!-- <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
       />
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-      />
+      /> -->
       <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Mode</th>
-                  <th>Date</th>
-                  <th>録音を確認する</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in items" :key="item.no">
-                  <td>{{ item.no }}</td>
-                  <td>{{ item.mode }}</td>
-                  <td>{{ item.date }}</td>
-                  <td>{{ item.gotodetail }}<output-user-voice /></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <table class="table">
+          <thead class="thead">
+            <tr class="thead">
+              <th class="thead">No.</th>
+              <th class="thead">YourAnsewer</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr>
+              <td><voicenumber /></td>
+              <td><output-user-voice /></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+    <div style="margin: 20px">
+      <pre>
+過去に受けた面接の履歴を表示しています。"GoToDetail"から詳細を確認できます！</pre
+      >
     </div>
   </div>
 </template>
 
 <script>
 import outputUserVoice from "../components/outputUserVoice.vue"
+import voicenumber from "../components/voiceNumber.vue"
+
 export default {
-  components: { outputUserVoice },
+  components: { outputUserVoice, voicenumber },
   data() {
     return {
       items: [
         {
           no: "example",
-          mode: "easy",
-          date: "2021/09/01",
-          gotodetail: "",
         },
       ],
     }
   },
 }
 </script>
+<style>
+.wrapper {
+  padding-right: 100px;
+  padding-left: 100px;
+}
+.container {
+  padding-right: 100px;
+  padding-left: 100px;
+}
+.table {
+  margin: auto;
+  width: 70%;
+}
+.thead {
+  font-size: 30px;
+  border-bottom: 1px solid black;
+  padding: 0px;
+}
+.tbody {
+  margin: auto;
+}
+</style>

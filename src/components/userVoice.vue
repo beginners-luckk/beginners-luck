@@ -60,11 +60,11 @@ export default {
       audioData: [], // 入力された音声データ
       audioExtension: "", // 音声ファイルの拡張子
       voiceUrls: [],
+      count: 0,
       db: firebase,
       isStart: true,
       isBigi: true,
       isEnd: false,
-      count: 0,
     }
   },
   computed: {
