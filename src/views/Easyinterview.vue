@@ -147,6 +147,9 @@ export default {
   },
   methods: {
     async playInterview() {
+      this.interviews.push(
+        "では、面接を始めます。1分間程度で自己ＰＲをお願いします"
+      )
       const storageRef = storage.ref("jobInterviews/easyintro.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url

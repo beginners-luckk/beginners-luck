@@ -160,6 +160,7 @@ export default {
       })
       const audio = new Audio()
       audio.src = this.interviewUrl
+
       return audio.play()
     },
     nextInterview() {
