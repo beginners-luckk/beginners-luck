@@ -28,9 +28,10 @@
         </table>
       </div>
     </div>
-    <div style="margin: 20px">
-      <pre>
-過去に受けた面接の履歴を表示しています。"GoToDetail"から詳細を確認できます！</pre
+    <div>
+      <button @click="deleate" class="finish-button">アプリを終了する</button>
+      <pre class="information">
+      過去に受けた面接の履歴を表示しています。"GoToDetail"から詳細を確認できます！</pre
       >
     </div>
   </div>
@@ -40,17 +41,33 @@
 import interview from "../components/interviiew.vue"
 import outputUserVoice from "../components/outputUserVoice.vue"
 import voicenumber from "../components/voiceNumber.vue"
+import firebase from "firebase"
 
 export default {
   components: { outputUserVoice, voicenumber, interview },
   data() {
     return {
-      items: [
-        {
-          no: "example",
-        },
-      ],
+      db: firebase.firestore().collection("users"),
     }
+  },
+  created() {
+    const user = firebase.auth().currentUser
+    if (user !== null) {
+      this.uid = user.uid
+    }
+  },
+  methods: {
+    deleate: function () {
+      this.db.doc(this.uid).update({
+        userUrl: firebase.firestore.FieldValue.delete(),
+      })
+      this.db.doc(this.uid).update({
+        count: firebase.firestore.FieldValue.delete(),
+      })
+      this.db.doc(this.uid).update({
+        interviews: firebase.firestore.FieldValue.delete(),
+      })
+    },
   },
 }
 </script>
@@ -70,7 +87,7 @@ export default {
 .thead-int {
   font-size: 30px;
   border-bottom: 1px dotted black;
-  padding-right: 30px;
+  padding-right: 35.33px;
   margin: 0px;
   border-left: 0px;
   border-right: 0px;

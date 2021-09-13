@@ -28,6 +28,7 @@
 <script>
 import { storage, storageRef } from "../storage/storage"
 import UserVoice from "@/components/userVoice.vue"
+import firebase from "firebase"
 
 export default {
   data() {
@@ -147,6 +148,7 @@ export default {
         },
       ],
       count: 0,
+      db: firebase.firestore().collection("users"),
     }
   },
   components: { UserVoice },
@@ -166,8 +168,16 @@ export default {
         this.shuffledPathArray = this.shuffleArray(this.listArray)
       })
   },
+  computed: {
+    user: function () {
+      return this.$store.state.user
+    },
+  },
   methods: {
     async playInterview() {
+      this.interviews.push(
+        "じゃあ面接を始めようか。まず私に、君自身を売り込んで"
+      )
       const storageRef = storage.ref("jobInterviews/hardintro.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
@@ -206,12 +216,25 @@ export default {
         })
     },
     async lastInterview() {
+      this.interviews.push(
+        "まあ、とりあえずこれで終わるけど何か聞きたいことあるなら言って"
+      )
       const storageRef = storage.ref("jobInterviews/hardLast.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
       const audio = new Audio()
       audio.src = this.interviewUrl
+      //postInterviews
+      const id = this.user.uid
+      const Data = { interviews: this.interviews }
+      this.db
+        .doc(id)
+        .update(Data)
+        .then(() => {
+          console.log("Int successfully written!")
+        })
+      //postInt:comp.
       return audio.play()
     },
     displayFunction() {
