@@ -26,7 +26,7 @@
           type="button"
           v-if="status == 'ready'"
           @click="lastButton"
-          class="basic-btn2"
+          class="basic-btn3"
         >
           逆質問
         </button>
@@ -183,12 +183,33 @@ export default {
   color: #fff;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
+  margin-top: 3rem;
+  margin-left: 27rem;
+  margin-bottom: 3rem;
+  width: 8rem;
+  height: 4rem;
 }
-/* .start-btn:active {
+.basic-btn2:active {
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
   border-bottom: none;
-} */
+}
+.basic-btn3 {
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8; /*ボタン色*/
+  color: #fff;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  margin-top: 4.5rem;
+  margin-left: 2rem;
+  margin-bottom: 3rem;
+}
+.basic-btn3:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  border-bottom: none;
+}
 .go-history {
   padding: 0.5em 1em;
   text-decoration: none;
@@ -196,7 +217,11 @@ export default {
   color: #fff;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
-  margin-left: 33rem;
+  margin-top: 3.2rem;
+  margin-left: 8rem;
+  margin-right: 27rem;
+  width: 8rem;
+  height: 4rem;
 }
 .go-history:active {
   /*ボタンを押したとき*/
