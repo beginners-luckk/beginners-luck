@@ -3,7 +3,9 @@
     <div class="bg-img">
       <h1 class="title1">Job</h1>
       <h1 class="title2">interview</h1>
-      <button class="login" @click="signIn">LOGIN</button>
+      <button class="login" @click="signIn">
+        <router-link :to="{ name: 'Home' }">LOGIN</router-link>
+      </button>
       <img
         class="bg"
         alt="bc-gif"
