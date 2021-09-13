@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="bg-img">
-      <!-- <h1 class="title1">Job</h1>
-      <h1 class="title2">interview</h1> -->
-
       <img v-bind:src="titlePath" class="title-img2" alt="" />
-      <button class="login" @click="signIn">LOGIN</button>
+      <button class="login" @click="signIn">
+        <router-link :to="{ name: 'Home' }">LOGIN</router-link>
+      </button>
+
       <img
         class="bg"
         alt="bc-gif"
