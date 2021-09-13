@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="bg-img">
-      <h1 class="title1">Job</h1>
-      <h1 class="title2">interview</h1>
+      <!-- <h1 class="title1">Job</h1>
+      <h1 class="title2">interview</h1> -->
+
+      <img v-bind:src="titlePath" class="title-img2" alt="" />
       <button class="login" @click="signIn">LOGIN</button>
       <img
         class="bg"
@@ -19,13 +21,18 @@ export default {
       this.$store.dispatch("signInWithGoogle")
     },
   },
+  data() {
+    return {
+      titlePath: require("@/assets/タイトル2.png"),
+    }
+  },
 }
 </script>
 <style>
 .bg {
   width: 50%;
   height: 60%;
-  padding-top: 20%;
+  padding-top: 3rem;
 }
 
 .title1 {
@@ -45,7 +52,7 @@ export default {
 .login {
   width: 5%;
   height: 5%;
-  margin-top: 16%;
+  margin-top: 10%;
   position: absolute;
 }
 .bg-img {
@@ -56,5 +63,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 8rem;
+}
+</style>
+
+<style scoped>
+.title-img2 {
+  height: 10rem;
 }
 </style>

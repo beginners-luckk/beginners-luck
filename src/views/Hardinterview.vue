@@ -33,7 +33,7 @@ import firebase from "firebase"
 export default {
   data() {
     return {
-      imgPath: require("@/assets/hard面接官.jpeg"),
+      imgPath: require("@/assets/hard面接官.png"),
       interviewUrl: "",
       listArray: [],
       shuffledPathArray: [],
@@ -287,8 +287,6 @@ export default {
   display: flex;
   text-align: center;
   background-color: gray;
-}
-.interviewer {
-  height: 33rem;
+  padding: 5vh;
 }
 </style>

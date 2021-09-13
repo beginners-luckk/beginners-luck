@@ -34,7 +34,7 @@ export default {
   components: { UserVoice },
   data() {
     return {
-      imgPath: require("@/assets/easy面接官.jpg"),
+      imgPath: require("@/assets/easy面接官.png"),
       interviewUrl: "",
       listArray: [],
       shuffledPathArray: [],
@@ -266,23 +266,19 @@ export default {
 .interview {
   background-color: bisque;
 }
-.interviewer {
-  width: 48rem;
-  height: 32rem;
-  margin: 0 auto;
-}
 </style>
 
 <style>
 .interview {
   display: flex;
   text-align: center;
+  padding: 5vh;
 }
 .interviewer {
-  width: 45rem;
   height: 28rem;
   margin: 0 auto;
 }
+
 .list-btn {
   position: relative;
   display: inline-block;
