@@ -30,14 +30,14 @@ export default {
 
 .title1 {
   text-align: center;
-  font-size: 350%;
+  font-size: 250%;
   font-family: cursive;
   position: absolute;
   margin-top: 5%;
 }
 .title2 {
   text-align: center;
-  font-size: 350%;
+  font-size: 250%;
   font-family: cursive;
   position: absolute;
   margin-top: 10%;
