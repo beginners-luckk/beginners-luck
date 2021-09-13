@@ -28,6 +28,7 @@
 <script>
 import { storage, storageRef } from "../storage/storage"
 import UserVoice from "@/components/userVoice.vue"
+import firebase from "firebase"
 
 export default {
   components: { UserVoice },
@@ -134,6 +135,7 @@ export default {
         },
       ],
       count: 0,
+      db: firebase.firestore().collection("users"),
     }
   },
   created: function () {
@@ -152,14 +154,23 @@ export default {
         this.shuffledPathArray = this.shuffleArray(this.listArray)
       })
   },
+  computed: {
+    user: function () {
+      return this.$store.state.user
+    },
+  },
   methods: {
     async playInterview() {
+      this.interviews.push(
+        "はい、では、面接を始めます。1分間程度で自由に自己ＰＲをお願いします"
+      )
       const storageRef = storage.ref("jobInterviews/medintro.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
       const audio = new Audio()
       audio.src = this.interviewUrl
+
       return audio.play()
     },
     nextInterview() {
@@ -192,12 +203,23 @@ export default {
         })
     },
     async lastInterview() {
+      this.interviews.push("こちらからの質問は以上です。何か質問はありますか")
       const storageRef = storage.ref("jobInterviews/medLast.mp3")
       await storageRef.getDownloadURL().then((url) => {
         this.interviewUrl = url
       })
       const audio = new Audio()
       audio.src = this.interviewUrl
+      //postInterviews
+      const id = this.user.uid
+      const Data = { interviews: this.interviews }
+      this.db
+        .doc(id)
+        .update(Data)
+        .then(() => {
+          console.log("Int successfully written!")
+        })
+      //postInt:comp.
       return audio.play()
     },
     displayFunction() {
@@ -232,7 +254,7 @@ export default {
     },
     startRecoading() {
       console.log("startRecoading-child")
-      if (this.isStarted == true) {
+      if (this.isStarted === true) {
         this.playInterview()
         this.isStarted = false
       } else {
