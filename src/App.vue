@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/BeforeSignIn">Before Sign In Page</router-link>
-      <router-link to="/AfterSignIn">After Sign In Page</router-link>
+      <router-link to="/BeforeSignIn">Sign In Page</router-link>|
+      <!-- <router-link to="/AfterSignIn">After Sign In Page</router-link>| -->
       <router-link to="/Home">Home</router-link> |
       <router-link to="/History">History</router-link>
     </div>
@@ -23,8 +23,8 @@ export default {
 </script>
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 25px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande";
+  font-size: 30px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

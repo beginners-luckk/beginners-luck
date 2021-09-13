@@ -25,27 +25,28 @@ export default {
 .bg {
   width: 50%;
   height: 60%;
-  padding-top: 3%;
+  padding-top: 20%;
 }
 
 .title1 {
   text-align: center;
-  font-size: 350%;
+  font-size: 250%;
   font-family: cursive;
   position: absolute;
   margin-top: 5%;
 }
 .title2 {
   text-align: center;
-  font-size: 350%;
+  font-size: 250%;
   font-family: cursive;
   position: absolute;
   margin-top: 10%;
 }
 .login {
   width: 5%;
-  height: 10%;
-  margin-top: 17%;
+  height: 5%;
+  margin-top: 16%;
+  position: absolute;
 }
 .bg-img {
   background-image: url(https://www.illust-pocket.com/wp-content/uploads/2016/07/516.jpg);
