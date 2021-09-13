@@ -30,8 +30,8 @@
     </div>
     <div>
       <button @click="deleate" class="finish-button">
-        <router-link :to="{ name: 'BeforeSignIn' }"
-          >アプリを終了する</router-link
+        <router-link :to="{ name: 'BeforeSignIn' }" class="finish-link"
+          >END</router-link
         >
       </button>
       <pre class="information">
@@ -99,5 +99,18 @@ export default {
 }
 .tbody {
   margin: auto;
+}
+.finish-button {
+  display: inline-block;
+  padding: 0.5em 1em;
+
+  color: gray;
+  border: double 4px gray;
+  border-radius: 3px;
+  transition: 0.4s;
+}
+.finish-link {
+  font-family: sans-serif;
+  text-decoration: none;
 }
 </style>
