@@ -271,9 +271,7 @@ export default {
 .interview {
   display: flex;
   text-align: center;
-  background-color: gray;
-}
-.interviewer {
-  height: 33rem;
+  background-color: rgb(236, 236, 231);
+  padding: 5vh;
 }
 </style>
