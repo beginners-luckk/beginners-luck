@@ -69,5 +69,6 @@ export default {
   justify-content: left;
   align-items: center;
   border-bottom: 1px dotted silver;
+  font-size: 50%;
 }
 </style>

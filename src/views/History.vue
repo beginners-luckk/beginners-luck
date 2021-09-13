@@ -34,9 +34,6 @@
           >END</router-link
         >
       </button>
-      <pre class="information">
-      過去に受けた面接の履歴を表示しています。"GoToDetail"から詳細を確認できます！</pre
-      >
     </div>
   </div>
 </template>
