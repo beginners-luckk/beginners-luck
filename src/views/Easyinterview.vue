@@ -305,6 +305,7 @@ ol {
   border-radius: 8px;
   box-shadow: 0px 0px 5px silver;
   padding: 0.5em 0.5em 0.5em 2em;
+  font-size: 1rem;
 }
 ul li,
 ol li {

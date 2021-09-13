@@ -273,4 +273,7 @@ export default {
   text-align: center;
   background-color: gray;
 }
+.interviewer {
+  height: 33rem;
+}
 </style>

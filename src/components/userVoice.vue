@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="side">
     <div v-if="isStart">
       <div v-if="isBigi">
         <button
@@ -12,12 +12,12 @@
         </button>
       </div>
     </div>
-    <div>
+    <div class="side" v-if="isNext">
       <button
         type="button"
         v-if="status == 'ready'"
         @click="startButton"
-        class="basic-btn"
+        class="basic-btn2"
       >
         次の質問
       </button>
@@ -26,9 +26,9 @@
           type="button"
           v-if="status == 'ready'"
           @click="lastButton"
-          class="basic-btn"
+          class="basic-btn3"
         >
-          最後の質問
+          逆質問
         </button>
       </div>
     </div>
@@ -36,7 +36,7 @@
       type="button"
       v-if="status == 'recording'"
       @click="stopButton"
-      class="basic-btn"
+      class="basic-btn2"
     >
       回答を終了する
     </button>
@@ -65,6 +65,7 @@ export default {
       isStart: true,
       isBigi: true,
       isEnd: false,
+      isNext: false,
     }
   },
   computed: {
@@ -81,6 +82,7 @@ export default {
       this.recorder.start()
       this.isBigi = false
       this.isEnd = true
+      this.isNext = true
     },
     lastButton: function () {
       console.log("last-start")
@@ -164,29 +166,80 @@ export default {
 </script>
 
 <style>
+.side {
+  display: flex;
+  justify-content: center;
+}
 .basic-btn {
   display: inline-block;
+  text-decoration: none;
+  background: #ff8181;
+  color: #fff;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  overflow: hidden;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #bd6565;
+  transition: 0.4s;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+.basic-btn :active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+.basic-btn2 {
   padding: 0.5em 1em;
   text-decoration: none;
   background: #668ad8; /*ボタン色*/
   color: #fff;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
+  margin-top: 3rem;
+  margin-left: 27rem;
+  margin-bottom: 3rem;
+  width: 8rem;
+  height: 4rem;
 }
-.start-btn:active {
-  /*ボタンを押したとき*/
+.basic-btn2:active {
   -webkit-transform: translateY(4px);
-  transform: translateY(4px); /*下に動く*/
-  border-bottom: none; /*線を消す*/
+  transform: translateY(4px);
+  border-bottom: none;
+}
+.basic-btn3 {
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8; /*ボタン色*/
+  color: #fff;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  margin-top: 4.5rem;
+  margin-left: 2rem;
+  margin-bottom: 3rem;
+}
+.basic-btn3:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  border-bottom: none;
 }
 .go-history {
-  display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
   background: #ff4500; /*ボタン色*/
   color: #fff;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
+  margin-top: 3.2rem;
+  margin-left: 8rem;
+  margin-right: 27rem;
+  width: 8rem;
+  height: 4rem;
 }
 .go-history:active {
   /*ボタンを押したとき*/
