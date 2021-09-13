@@ -29,7 +29,11 @@
       </div>
     </div>
     <div>
-      <button @click="deleate" class="finish-button">アプリを終了する</button>
+      <button @click="deleate" class="finish-button">
+        <router-link :to="{ name: 'BeforeSignIn' }"
+          >アプリを終了する</router-link
+        >
+      </button>
       <pre class="information">
       過去に受けた面接の履歴を表示しています。"GoToDetail"から詳細を確認できます！</pre
       >
