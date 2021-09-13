@@ -6,10 +6,6 @@
     <div class="item">
       <figure class="image">
         <img v-bind:src="imgPath" alt="" />
-        <!-- <img
-          src="https://i0.wp.com/sozaido.site/wp-content/uploads/2019/08/r00831c.jpg?fit=428%2C400&ssl=1"
-          alt=""
-        /> -->
       </figure>
       <p class="title">Easy</p>
       <p class="description">優しく話しやすい雰囲気の面接</p>
@@ -19,10 +15,6 @@
     </div>
     <div class="item">
       <figure class="image">
-        <!-- <img
-          src="https://i1.wp.com/sozaido.site/wp-content/uploads/2019/07/r00826.png?w=632&ssl=1"
-          alt=""
-        /> -->
         <img v-bind:src="imgPath2" alt="" />
       </figure>
       <p class="title">Medium</p>
@@ -35,10 +27,6 @@
     </div>
     <div class="item">
       <figure class="image">
-        <!-- <img
-          src="https://thumb.ac-illust.com/2c/2cdb2a810ce6e889780ef4f450583c91_t.jpeg"
-          alt=""
-        /> -->
         <img v-bind:src="imgPath3" alt="" />
       </figure>
       <p class="title">Hard</p>
