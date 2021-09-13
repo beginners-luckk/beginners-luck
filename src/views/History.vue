@@ -15,7 +15,7 @@
             <tr class="thead">
               <th class="thead"></th>
               <th class="thead-int">Interview</th>
-              <th class="thead">YourAnsewer</th>
+              <th class="thead">Your Answer</th>
             </tr>
           </thead>
           <tbody class="tbody">
