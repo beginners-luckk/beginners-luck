@@ -39,7 +39,7 @@ export default {
       shuffledPathArray: [],
       judgeArray: [],
       display: false,
-      interviews: ["私に君自身を売り込んで"],
+      interviews: [],
       isStarted: true,
       isList: true,
       isClose: false,
